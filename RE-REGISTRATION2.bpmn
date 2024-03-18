@@ -57,6 +57,11 @@
           <camunda:property name="view" value="elicense.request.form" />
           <camunda:property name="viewLabel" value="Request" />
           <camunda:property name="roles" value="Director" />
+          <camunda:property name="itemType" value="panel" />
+          <camunda:property name="itemLabel" value="Директор" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="director-panel" />
+          <camunda:property name="hidden" value="false" />
           <camunda:property name="itemType" value="button" />
           <camunda:property name="itemLabel" value="Передать коммисии" />
           <camunda:property name="permanent" value="false" />
@@ -253,7 +258,7 @@ return $ctx.save(rec)</bpmn2:script>
           <camunda:property name="modelType" value="metaModel" />
           <camunda:property name="view" value="elicense.request.form" />
           <camunda:property name="viewLabel" value="Request" />
-          <camunda:property name="roles" value="Chairman" />
+          <camunda:property name="roles" value="Chairman,Commission" />
           <camunda:property name="itemType" value="button" />
           <camunda:property name="itemLabel" value="Rejeter" />
           <camunda:property name="permanent" value="false" />
