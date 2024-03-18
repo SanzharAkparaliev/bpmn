@@ -6,7 +6,7 @@
         <camunda:processConfigurationParameter metaModel="SaleOrder" pathCondition="saleOrder?.statusSelect == 1 &#38;&#38; saleOrder?.product == &#39;1&#39;" isStartModel="true" isDirectCreation="false" isCustom="false" model="com.axelor.apps.sale.db.SaleOrder" metaModelFullName="com.axelor.apps.sale.db.SaleOrder" title="Sale order" />
       </camunda:processConfiguration>
     </bpmn2:extensionElements>
-    <bpmn2:userTask id="Activity_09plxkl" name="clerk" camunda:completedIf="saleOrder?.statusSelect == 2 &#38;&#38; saleOrder?.registerSedNumber != null">
+    <bpmn2:userTask id="Activity_09plxklttt" name="clerk" camunda:completedIf="saleOrder?.statusSelect == 2 &#38;&#38; saleOrder?.registerSedNumber != null">
       <bpmn2:extensionElements>
         <camunda:properties>
           <camunda:property name="model" value="com.axelor.apps.sale.db.SaleOrder" />
@@ -46,8 +46,8 @@
       <bpmn2:incoming>Flow_10rhscy</bpmn2:incoming>
       <bpmn2:outgoing>Flow_0dj90u0</bpmn2:outgoing>
     </bpmn2:userTask>
-    <bpmn2:sequenceFlow id="Flow_0dj90u0" sourceRef="Activity_09plxkl" targetRef="Activity_01uxc3e" />
-    <bpmn2:userTask id="Activity_01uxc3e" name="director" camunda:completedIf="saleOrder?.statusSelect == 3">
+    <bpmn2:sequenceFlow id="Flow_0dj90u0" sourceRef="Activity_09plxklttt" targetRef="Activity_01uxc3ettt" />
+    <bpmn2:userTask id="Activity_01uxc3ettt" name="director" camunda:completedIf="saleOrder?.statusSelect == 3">
       <bpmn2:extensionElements>
         <camunda:properties>
           <camunda:property name="model" value="com.axelor.apps.sale.db.SaleOrder" />
@@ -82,7 +82,7 @@
       <bpmn2:incoming>Flow_0dj90u0</bpmn2:incoming>
       <bpmn2:outgoing>Flow_01rqgxk</bpmn2:outgoing>
     </bpmn2:userTask>
-    <bpmn2:userTask id="Activity_0fomku9" name="commission" camunda:completedIf="saleOrder?.commissionSecond != null">
+    <bpmn2:userTask id="Activity_0fomku9ttt" name="commission" camunda:completedIf="saleOrder?.commissionSecond != null">
       <bpmn2:extensionElements>
         <camunda:properties>
           <camunda:property name="model" value="com.axelor.apps.sale.db.SaleOrder" />
@@ -112,7 +112,7 @@
       <bpmn2:incoming>Flow_1iame5v</bpmn2:incoming>
       <bpmn2:outgoing>Flow_07k66yr</bpmn2:outgoing>
     </bpmn2:userTask>
-    <bpmn2:userTask id="Activity_0wn4rqo" name="commission" camunda:completedIf="saleOrder?.commissionFirst != null">
+    <bpmn2:userTask id="Activity_0wn4rqott" name="commission" camunda:completedIf="saleOrder?.commissionFirst != null">
       <bpmn2:extensionElements>
         <camunda:properties>
           <camunda:property name="model" value="com.axelor.apps.sale.db.SaleOrder" />
@@ -144,17 +144,17 @@
     </bpmn2:userTask>
     <bpmn2:exclusiveGateway id="Gateway_0q46ekf" default="Flow_1tei0wk">
       <bpmn2:incoming>Flow_1lpmlts</bpmn2:incoming>
-      <bpmn2:outgoing>Flow_0qlamn5</bpmn2:outgoing>
+      <bpmn2:outgoing>Flow_0qlamn5ttt</bpmn2:outgoing>
       <bpmn2:outgoing>Flow_1tei0wk</bpmn2:outgoing>
     </bpmn2:exclusiveGateway>
     <bpmn2:endEvent id="Event_0gxxghg">
       <bpmn2:incoming>Flow_1c0qugd</bpmn2:incoming>
     </bpmn2:endEvent>
-    <bpmn2:sequenceFlow id="Flow_0qlamn5" sourceRef="Gateway_0q46ekf" targetRef="Activity_0o4wwwh">
+    <bpmn2:sequenceFlow id="Flow_0qlamn5ttt" sourceRef="Gateway_0q46ekf" targetRef="Activity_0o4wwwhttt">
       <bpmn2:conditionExpression xs:type="bpmn2:tFormalExpression" language="axelor">saleOrder?.commissionFirstVote == false &amp;&amp; saleOrder?.commissionSecondVote == false &amp;&amp; saleOrder?.commissionThirdVote == false</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
-    <bpmn2:sequenceFlow id="Flow_1tei0wk" sourceRef="Gateway_0q46ekf" targetRef="Activity_0yvpykn" />
-    <bpmn2:userTask id="Activity_1n3r3ic" name="chairman" camunda:completedIf="saleOrder?.statusSelect == 4">
+    <bpmn2:sequenceFlow id="Flow_1tei0wk" sourceRef="Gateway_0q46ekf" targetRef="Activity_0yvpyknttt" />
+    <bpmn2:userTask id="Activity_1n3r3icttt" name="chairman" camunda:completedIf="saleOrder?.statusSelect == 4">
       <bpmn2:extensionElements>
         <camunda:properties>
           <camunda:property name="model" value="com.axelor.apps.sale.db.SaleOrder" />
@@ -164,6 +164,11 @@
           <camunda:property name="view" value="elicense.request.form" />
           <camunda:property name="viewLabel" value="Request" />
           <camunda:property name="roles" value="Chairman" />
+          <camunda:property name="itemType" value="ONE_TO_MANY" />
+          <camunda:property name="itemLabel" value="ACT" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="act" />
+          <camunda:property name="hidden" value="false" />
           <camunda:property name="itemType" value="TEXT" />
           <camunda:property name="itemLabel" value="Commission second comment" />
           <camunda:property name="permanent" value="false" />
@@ -197,11 +202,11 @@
         </camunda:properties>
       </bpmn2:extensionElements>
       <bpmn2:incoming>Flow_1s9nrgc</bpmn2:incoming>
-      <bpmn2:incoming>Flow_0qa83vh</bpmn2:incoming>
+      <bpmn2:incoming>Flow_0qa83vhtt</bpmn2:incoming>
       <bpmn2:outgoing>Flow_1izxpjt</bpmn2:outgoing>
     </bpmn2:userTask>
-    <bpmn2:sequenceFlow id="Flow_1izxpjt" sourceRef="Activity_1n3r3ic" targetRef="Activity_1l0cdtx" />
-    <bpmn2:userTask id="Activity_1l0cdtx" name="director" camunda:completedIf="saleOrder?.status == &#39;3&#39; || saleOrder?.status == &#39;4&#39; || saleOrder?.statusSelect == 3">
+    <bpmn2:sequenceFlow id="Flow_1izxpjt" sourceRef="Activity_1n3r3icttt" targetRef="Activity_1l0cdtxttt" />
+    <bpmn2:userTask id="Activity_1l0cdtxttt" name="director" camunda:completedIf="saleOrder?.status == &#39;3&#39; || saleOrder?.status == &#39;4&#39; || saleOrder?.statusSelect == 3">
       <bpmn2:extensionElements>
         <camunda:properties>
           <camunda:property name="model" value="com.axelor.apps.sale.db.SaleOrder" />
@@ -211,6 +216,11 @@
           <camunda:property name="view" value="elicense.request.form" />
           <camunda:property name="viewLabel" value="Request" />
           <camunda:property name="roles" value="Director" />
+          <camunda:property name="itemType" value="ONE_TO_MANY" />
+          <camunda:property name="itemLabel" value="АКТ" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="act" />
+          <camunda:property name="hidden" value="false" />
           <camunda:property name="itemType" value="ONE_TO_ONE" />
           <camunda:property name="itemLabel" value="Conclusion" />
           <camunda:property name="permanent" value="false" />
@@ -251,25 +261,25 @@
       <bpmn2:incoming>Flow_1izxpjt</bpmn2:incoming>
       <bpmn2:outgoing>Flow_061yfrp</bpmn2:outgoing>
     </bpmn2:userTask>
-    <bpmn2:exclusiveGateway id="Gateway_17mt5fw">
+    <bpmn2:exclusiveGateway id="Gateway_17mt5fwttt">
       <bpmn2:incoming>Flow_061yfrp</bpmn2:incoming>
       <bpmn2:outgoing>Flow_1s9nrgc</bpmn2:outgoing>
       <bpmn2:outgoing>Flow_18sk3y9</bpmn2:outgoing>
       <bpmn2:outgoing>Flow_0u2oorp</bpmn2:outgoing>
     </bpmn2:exclusiveGateway>
-    <bpmn2:sequenceFlow id="Flow_061yfrp" sourceRef="Activity_1l0cdtx" targetRef="Gateway_17mt5fw" />
-    <bpmn2:sequenceFlow id="Flow_1s9nrgc" sourceRef="Gateway_17mt5fw" targetRef="Activity_1n3r3ic">
+    <bpmn2:sequenceFlow id="Flow_061yfrp" sourceRef="Activity_1l0cdtxttt" targetRef="Gateway_17mt5fwttt" />
+    <bpmn2:sequenceFlow id="Flow_1s9nrgc" sourceRef="Gateway_17mt5fwttt" targetRef="Activity_1n3r3icttt">
       <bpmn2:conditionExpression xs:type="bpmn2:tFormalExpression" language="axelor">saleOrder?.statusSelect == 3</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:endEvent id="Event_1tdc3mr">
       <bpmn2:incoming>Flow_1ubmljj</bpmn2:incoming>
       <bpmn2:incoming>Flow_1hjkl7n</bpmn2:incoming>
     </bpmn2:endEvent>
-    <bpmn2:sequenceFlow id="Flow_01rqgxk" sourceRef="Activity_01uxc3e" targetRef="Gateway_0q7kocd" />
-    <bpmn2:sequenceFlow id="Flow_1iame5v" sourceRef="Activity_0wn4rqo" targetRef="Activity_0fomku9" />
-    <bpmn2:sequenceFlow id="Flow_07k66yr" sourceRef="Activity_0fomku9" targetRef="Gateway_1cibq50" />
-    <bpmn2:sequenceFlow id="Flow_1c0qugd" sourceRef="Activity_0o4wwwh" targetRef="Event_0gxxghg" />
-    <bpmn2:serviceTask id="Activity_0o4wwwh" name="commission reject" camunda:class="com.axelor.apps.elicense.delegate.SendAxelorMessageDelegate">
+    <bpmn2:sequenceFlow id="Flow_01rqgxk" sourceRef="Activity_01uxc3ettt" targetRef="Gateway_0q7kocd" />
+    <bpmn2:sequenceFlow id="Flow_1iame5v" sourceRef="Activity_0wn4rqott" targetRef="Activity_0fomku9ttt" />
+    <bpmn2:sequenceFlow id="Flow_07k66yr" sourceRef="Activity_0fomku9ttt" targetRef="Gateway_1cibq50" />
+    <bpmn2:sequenceFlow id="Flow_1c0qugd" sourceRef="Activity_0o4wwwhttt" targetRef="Event_0gxxghg" />
+    <bpmn2:serviceTask id="Activity_0o4wwwhttt" name="commission reject" camunda:class="com.axelor.apps.elicense.delegate.SendAxelorMessageDelegate">
       <bpmn2:extensionElements>
         <camunda:field name="userField" stringValue="createdBy" />
         <camunda:field name="modelName" stringValue="com.axelor.apps.sale.db.SaleOrder" />
@@ -278,14 +288,14 @@
           <camunda:string>&lt;p&gt;Ваша заявка была отклонена комиссией.&lt;br&gt; Для получения дополнительных подробностей о причинах отклонения,&lt;br&gt; пожалуйста, просмотрите вашу заявку.&lt;/p&gt;</camunda:string>
         </camunda:field>
       </bpmn2:extensionElements>
-      <bpmn2:incoming>Flow_0qlamn5</bpmn2:incoming>
+      <bpmn2:incoming>Flow_0qlamn5ttt</bpmn2:incoming>
       <bpmn2:outgoing>Flow_1c0qugd</bpmn2:outgoing>
     </bpmn2:serviceTask>
-    <bpmn2:sequenceFlow id="Flow_18sk3y9" sourceRef="Gateway_17mt5fw" targetRef="Activity_1ulfp44">
+    <bpmn2:sequenceFlow id="Flow_18sk3y9" sourceRef="Gateway_17mt5fwttt" targetRef="Activity_1ulfp44ttt">
       <bpmn2:conditionExpression xs:type="bpmn2:tFormalExpression" language="axelor">saleOrder?.status == '4'</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
-    <bpmn2:sequenceFlow id="Flow_17vqkim" sourceRef="Activity_1ulfp44" targetRef="Activity_0ykw2qh" />
-    <bpmn2:scriptTask id="Activity_1ulfp44" name="ceate license" scriptFormat="axelor" camunda:scriptValue="{&#34;fields&#34;:[{&#34;name&#34;:&#34;licensor&#34;,&#34;type&#34;:&#34;MANY_TO_ONE&#34;,&#34;target&#34;:&#34;Partner&#34;,&#34;condition&#34;:null,&#34;conditionMeta&#34;:null,&#34;value&#34;:{&#34;from&#34;:&#34;source&#34;,&#34;selected&#34;:{&#34;value&#34;:&#34;createdUser&#34;},&#34;query&#34;:null,&#34;subFields&#34;:[{&#34;title&#34;:&#34;Пользователь&#34;,&#34;name&#34;:&#34;createdUser&#34;,&#34;type&#34;:&#34;MANY_TO_ONE&#34;,&#34;target&#34;:&#34;com.axelor.apps.base.db.Partner&#34;}]}},{&#34;name&#34;:&#34;kindOfActivity&#34;,&#34;type&#34;:&#34;STRING&#34;,&#34;condition&#34;:null,&#34;conditionMeta&#34;:null,&#34;value&#34;:{&#34;from&#34;:&#34;source&#34;,&#34;selected&#34;:{&#34;value&#34;:&#34;elicenseActivity&#34;},&#34;query&#34;:null,&#34;subFields&#34;:[{&#34;title&#34;:&#34;Вид деятельности&#34;,&#34;name&#34;:&#34;elicenseActivity&#34;,&#34;type&#34;:&#34;STRING&#34;}]}},{&#34;name&#34;:&#34;organizationalLegal&#34;,&#34;type&#34;:&#34;STRING&#34;,&#34;condition&#34;:null,&#34;conditionMeta&#34;:null,&#34;value&#34;:{&#34;from&#34;:&#34;source&#34;,&#34;selected&#34;:{&#34;value&#34;:&#34;organizationalForm&#34;},&#34;query&#34;:null,&#34;subFields&#34;:[{&#34;title&#34;:&#34;Организационная форма&#34;,&#34;name&#34;:&#34;organizationalForm&#34;,&#34;type&#34;:&#34;STRING&#34;}]}},{&#34;name&#34;:&#34;status&#34;,&#34;type&#34;:&#34;STRING&#34;,&#34;condition&#34;:null,&#34;conditionMeta&#34;:null,&#34;value&#34;:{&#34;from&#34;:&#34;none&#34;,&#34;selected&#34;:{&#34;value&#34;:&#34;current&#34;},&#34;query&#34;:null,&#34;subFields&#34;:[]}},{&#34;name&#34;:&#34;applicant&#34;,&#34;type&#34;:&#34;MANY_TO_ONE&#34;,&#34;target&#34;:&#34;SaleOrder&#34;,&#34;condition&#34;:null,&#34;conditionMeta&#34;:null,&#34;value&#34;:{&#34;from&#34;:&#34;source&#34;,&#34;selected&#34;:{&#34;value&#34;:&#34;SOURCE&#34;},&#34;query&#34;:null,&#34;subFields&#34;:[{&#34;id&#34;:267,&#34;version&#34;:0,&#34;title&#34;:&#34;SOURCE&#34;,&#34;name&#34;:&#34;SaleOrder&#34;,&#34;fullName&#34;:&#34;com.axelor.apps.sale.db.SaleOrder&#34;}]}}],&#34;targetModel&#34;:&#34;Elicense&#34;,&#34;sourceModel&#34;:&#34;SaleOrder&#34;,&#34;sourceModelList&#34;:[{&#34;name&#34;:&#34;SaleOrder&#34;,&#34;fullName&#34;:&#34;com.axelor.apps.sale.db.SaleOrder&#34;,&#34;id&#34;:270,&#34;version&#34;:0,&#34;$wkfStatus&#34;:null,&#34;title&#34;:&#34;Sale order&#34;,&#34;type&#34;:&#34;metaModel&#34;}],&#34;newRecord&#34;:true,&#34;savedRecord&#34;:false,&#34;save&#34;:true,&#34;isJson&#34;:false,&#34;createVariable&#34;:false,&#34;processId&#34;:null,&#34;modelFrom&#34;:{&#34;title&#34;:&#34;Context&#34;,&#34;id&#34;:&#34;context&#34;}}">
+    <bpmn2:sequenceFlow id="Flow_17vqkim" sourceRef="Activity_1ulfp44ttt" targetRef="Activity_0ykw2qhtt" />
+    <bpmn2:scriptTask id="Activity_1ulfp44ttt" name="ceate license" scriptFormat="axelor" camunda:scriptValue="{&#34;fields&#34;:[{&#34;name&#34;:&#34;licensor&#34;,&#34;type&#34;:&#34;MANY_TO_ONE&#34;,&#34;target&#34;:&#34;Partner&#34;,&#34;condition&#34;:null,&#34;conditionMeta&#34;:null,&#34;value&#34;:{&#34;from&#34;:&#34;source&#34;,&#34;selected&#34;:{&#34;value&#34;:&#34;createdUser&#34;},&#34;query&#34;:null,&#34;subFields&#34;:[{&#34;title&#34;:&#34;Пользователь&#34;,&#34;name&#34;:&#34;createdUser&#34;,&#34;type&#34;:&#34;MANY_TO_ONE&#34;,&#34;target&#34;:&#34;com.axelor.apps.base.db.Partner&#34;}]}},{&#34;name&#34;:&#34;kindOfActivity&#34;,&#34;type&#34;:&#34;STRING&#34;,&#34;condition&#34;:null,&#34;conditionMeta&#34;:null,&#34;value&#34;:{&#34;from&#34;:&#34;source&#34;,&#34;selected&#34;:{&#34;value&#34;:&#34;elicenseActivity&#34;},&#34;query&#34;:null,&#34;subFields&#34;:[{&#34;title&#34;:&#34;Вид деятельности&#34;,&#34;name&#34;:&#34;elicenseActivity&#34;,&#34;type&#34;:&#34;STRING&#34;}]}},{&#34;name&#34;:&#34;organizationalLegal&#34;,&#34;type&#34;:&#34;STRING&#34;,&#34;condition&#34;:null,&#34;conditionMeta&#34;:null,&#34;value&#34;:{&#34;from&#34;:&#34;source&#34;,&#34;selected&#34;:{&#34;value&#34;:&#34;organizationalForm&#34;},&#34;query&#34;:null,&#34;subFields&#34;:[{&#34;title&#34;:&#34;Организационная форма&#34;,&#34;name&#34;:&#34;organizationalForm&#34;,&#34;type&#34;:&#34;STRING&#34;}]}},{&#34;name&#34;:&#34;status&#34;,&#34;type&#34;:&#34;STRING&#34;,&#34;condition&#34;:null,&#34;conditionMeta&#34;:null,&#34;value&#34;:{&#34;from&#34;:&#34;none&#34;,&#34;selected&#34;:{&#34;value&#34;:&#34;current&#34;},&#34;query&#34;:null,&#34;subFields&#34;:[]}},{&#34;name&#34;:&#34;applicant&#34;,&#34;type&#34;:&#34;MANY_TO_ONE&#34;,&#34;target&#34;:&#34;SaleOrder&#34;,&#34;condition&#34;:null,&#34;conditionMeta&#34;:null,&#34;value&#34;:{&#34;from&#34;:&#34;source&#34;,&#34;selected&#34;:{&#34;value&#34;:&#34;SOURCE&#34;},&#34;query&#34;:null,&#34;subFields&#34;:[{&#34;id&#34;:267,&#34;version&#34;:0,&#34;title&#34;:&#34;SOURCE&#34;,&#34;name&#34;:&#34;SaleOrder&#34;,&#34;fullName&#34;:&#34;com.axelor.apps.sale.db.SaleOrder&#34;}]}}],&#34;targetModel&#34;:&#34;Elicense&#34;,&#34;sourceModel&#34;:&#34;SaleOrder&#34;,&#34;sourceModelList&#34;:[{&#34;name&#34;:&#34;SaleOrder&#34;,&#34;fullName&#34;:&#34;com.axelor.apps.sale.db.SaleOrder&#34;,&#34;id&#34;:270,&#34;version&#34;:0,&#34;$wkfStatus&#34;:null,&#34;title&#34;:&#34;Sale order&#34;,&#34;type&#34;:&#34;metaModel&#34;}],&#34;newRecord&#34;:true,&#34;savedRecord&#34;:false,&#34;save&#34;:true,&#34;isJson&#34;:false,&#34;createVariable&#34;:false,&#34;processId&#34;:null,&#34;modelFrom&#34;:{&#34;title&#34;:&#34;Context&#34;,&#34;id&#34;:&#34;context&#34;}}">
       <bpmn2:incoming>Flow_18sk3y9</bpmn2:incoming>
       <bpmn2:outgoing>Flow_17vqkim</bpmn2:outgoing>
       <bpmn2:script>def rec = $ctx.create('Elicense')
@@ -297,7 +307,7 @@ rec.status = 'current'
 rec.applicant = $ctx.find('SaleOrder',src?.id)?.getTarget()
 return $ctx.save(rec)</bpmn2:script>
     </bpmn2:scriptTask>
-    <bpmn2:sequenceFlow id="Flow_0duscs2" sourceRef="Gateway_0q7kocd" targetRef="Activity_0wn4rqo" />
+    <bpmn2:sequenceFlow id="Flow_0duscs2" sourceRef="Gateway_0q7kocd" targetRef="Activity_0wn4rqott" />
     <bpmn2:sequenceFlow id="Flow_1lpmlts" sourceRef="Gateway_1cibq50" targetRef="Gateway_0q46ekf" />
     <bpmn2:parallelGateway id="Gateway_1cibq50">
       <bpmn2:incoming>Flow_07k66yr</bpmn2:incoming>
@@ -309,9 +319,9 @@ return $ctx.save(rec)</bpmn2:script>
       <bpmn2:outgoing>Flow_0duscs2</bpmn2:outgoing>
       <bpmn2:outgoing>Flow_15knj9k</bpmn2:outgoing>
     </bpmn2:parallelGateway>
-    <bpmn2:sequenceFlow id="Flow_15knj9k" sourceRef="Gateway_0q7kocd" targetRef="Activity_0wjqbdf" />
-    <bpmn2:sequenceFlow id="Flow_0je1wpr" sourceRef="Activity_0wjqbdf" targetRef="Gateway_1cibq50" />
-    <bpmn2:userTask id="Activity_0wjqbdf" name="chairman" camunda:completedIf="saleOrder?.commissionThird != null">
+    <bpmn2:sequenceFlow id="Flow_15knj9k" sourceRef="Gateway_0q7kocd" targetRef="Activity_0wjqbdftt" />
+    <bpmn2:sequenceFlow id="Flow_0je1wpr" sourceRef="Activity_0wjqbdftt" targetRef="Gateway_1cibq50" />
+    <bpmn2:userTask id="Activity_0wjqbdftt" name="chairman" camunda:completedIf="saleOrder?.commissionThird != null">
       <bpmn2:extensionElements>
         <camunda:properties>
           <camunda:property name="model" value="com.axelor.apps.sale.db.SaleOrder" />
@@ -341,8 +351,8 @@ return $ctx.save(rec)</bpmn2:script>
       <bpmn2:incoming>Flow_15knj9k</bpmn2:incoming>
       <bpmn2:outgoing>Flow_0je1wpr</bpmn2:outgoing>
     </bpmn2:userTask>
-    <bpmn2:sequenceFlow id="Flow_1ubmljj" sourceRef="Activity_0ykw2qh" targetRef="Event_1tdc3mr" />
-    <bpmn2:serviceTask id="Activity_0ykw2qh" name="director sign" camunda:class="com.axelor.apps.elicense.delegate.SendAxelorMessageDelegate">
+    <bpmn2:sequenceFlow id="Flow_1ubmljj" sourceRef="Activity_0ykw2qhtt" targetRef="Event_1tdc3mr" />
+    <bpmn2:serviceTask id="Activity_0ykw2qhtt" name="director sign" camunda:class="com.axelor.apps.elicense.delegate.SendAxelorMessageDelegate">
       <bpmn2:extensionElements>
         <camunda:field name="userField" stringValue="createdBy" />
         <camunda:field name="modelName" stringValue="com.axelor.apps.sale.db.SaleOrder" />
@@ -354,8 +364,8 @@ return $ctx.save(rec)</bpmn2:script>
       <bpmn2:incoming>Flow_17vqkim</bpmn2:incoming>
       <bpmn2:outgoing>Flow_1ubmljj</bpmn2:outgoing>
     </bpmn2:serviceTask>
-    <bpmn2:sequenceFlow id="Flow_1r2atmr" sourceRef="Activity_120f7xo" targetRef="Gateway_0o4esrn" />
-    <bpmn2:userTask id="Activity_1jjcsh7" name="comment 1" camunda:completedIf="saleOrder?.commissionFirstComment != null">
+    <bpmn2:sequenceFlow id="Flow_1r2atmr" sourceRef="Activity_120f7xott" targetRef="Gateway_0o4esrn" />
+    <bpmn2:userTask id="Activity_1jjcsh7ttt" name="comment 1" camunda:completedIf="saleOrder?.commissionFirstComment != null">
       <bpmn2:extensionElements>
         <camunda:properties>
           <camunda:property name="model" value="com.axelor.apps.sale.db.SaleOrder" />
@@ -387,10 +397,10 @@ return $ctx.save(rec)</bpmn2:script>
           <camunda:property name="hidden" value="false" />
         </camunda:properties>
       </bpmn2:extensionElements>
-      <bpmn2:incoming>Flow_1viv6m8</bpmn2:incoming>
+      <bpmn2:incoming>Flow_1viv6m8ttt</bpmn2:incoming>
       <bpmn2:outgoing>Flow_0zj6xzj</bpmn2:outgoing>
     </bpmn2:userTask>
-    <bpmn2:userTask id="Activity_120f7xo" name="comment 2" camunda:completedIf="saleOrder?.commissionSecondComment != null">
+    <bpmn2:userTask id="Activity_120f7xott" name="comment 2" camunda:completedIf="saleOrder?.commissionSecondComment != null">
       <bpmn2:extensionElements>
         <camunda:properties>
           <camunda:property name="model" value="com.axelor.apps.sale.db.SaleOrder" />
@@ -422,25 +432,25 @@ return $ctx.save(rec)</bpmn2:script>
           <camunda:property name="hidden" value="eval: __user__.id != commissionSecond?.id" />
         </camunda:properties>
       </bpmn2:extensionElements>
-      <bpmn2:incoming>Flow_0e6vjx3</bpmn2:incoming>
+      <bpmn2:incoming>Flow_0e6vjx3tt</bpmn2:incoming>
       <bpmn2:outgoing>Flow_1r2atmr</bpmn2:outgoing>
     </bpmn2:userTask>
-    <bpmn2:sequenceFlow id="Flow_1viv6m8" sourceRef="Gateway_0eehbyu" targetRef="Activity_1jjcsh7" />
+    <bpmn2:sequenceFlow id="Flow_1viv6m8ttt" sourceRef="Gateway_0eehbyu" targetRef="Activity_1jjcsh7ttt" />
     <bpmn2:parallelGateway id="Gateway_0eehbyu">
       <bpmn2:incoming>Flow_05ndf0f</bpmn2:incoming>
-      <bpmn2:outgoing>Flow_1viv6m8</bpmn2:outgoing>
-      <bpmn2:outgoing>Flow_0e6vjx3</bpmn2:outgoing>
+      <bpmn2:outgoing>Flow_1viv6m8ttt</bpmn2:outgoing>
+      <bpmn2:outgoing>Flow_0e6vjx3tt</bpmn2:outgoing>
     </bpmn2:parallelGateway>
-    <bpmn2:sequenceFlow id="Flow_0e6vjx3" sourceRef="Gateway_0eehbyu" targetRef="Activity_120f7xo" />
-    <bpmn2:sequenceFlow id="Flow_0qa83vh" sourceRef="Gateway_0o4esrn" targetRef="Activity_1n3r3ic" />
+    <bpmn2:sequenceFlow id="Flow_0e6vjx3tt" sourceRef="Gateway_0eehbyu" targetRef="Activity_120f7xott" />
+    <bpmn2:sequenceFlow id="Flow_0qa83vhtt" sourceRef="Gateway_0o4esrn" targetRef="Activity_1n3r3icttt" />
     <bpmn2:parallelGateway id="Gateway_0o4esrn">
       <bpmn2:incoming>Flow_1r2atmr</bpmn2:incoming>
       <bpmn2:incoming>Flow_0zj6xzj</bpmn2:incoming>
-      <bpmn2:outgoing>Flow_0qa83vh</bpmn2:outgoing>
+      <bpmn2:outgoing>Flow_0qa83vhtt</bpmn2:outgoing>
     </bpmn2:parallelGateway>
-    <bpmn2:sequenceFlow id="Flow_0zj6xzj" sourceRef="Activity_1jjcsh7" targetRef="Gateway_0o4esrn" />
-    <bpmn2:sequenceFlow id="Flow_05ndf0f" sourceRef="Activity_0yvpykn" targetRef="Gateway_0eehbyu" />
-    <bpmn2:serviceTask id="Activity_0yvpykn" name="commission approve" camunda:class="com.axelor.apps.elicense.delegate.SendAxelorMessageDelegate">
+    <bpmn2:sequenceFlow id="Flow_0zj6xzj" sourceRef="Activity_1jjcsh7ttt" targetRef="Gateway_0o4esrn" />
+    <bpmn2:sequenceFlow id="Flow_05ndf0f" sourceRef="Activity_0yvpyknttt" targetRef="Gateway_0eehbyu" />
+    <bpmn2:serviceTask id="Activity_0yvpyknttt" name="commission approve" camunda:class="com.axelor.apps.elicense.delegate.SendAxelorMessageDelegate">
       <bpmn2:extensionElements>
         <camunda:field name="userField" stringValue="createdBy" />
         <camunda:field name="modelName" stringValue="com.axelor.apps.sale.db.SaleOrder" />
@@ -452,11 +462,11 @@ return $ctx.save(rec)</bpmn2:script>
       <bpmn2:incoming>Flow_1tei0wk</bpmn2:incoming>
       <bpmn2:outgoing>Flow_05ndf0f</bpmn2:outgoing>
     </bpmn2:serviceTask>
-    <bpmn2:sequenceFlow id="Flow_0u2oorp" sourceRef="Gateway_17mt5fw" targetRef="Activity_16e4g0f">
+    <bpmn2:sequenceFlow id="Flow_0u2oorp" sourceRef="Gateway_17mt5fwttt" targetRef="Activity_16e4g0fttt">
       <bpmn2:conditionExpression xs:type="bpmn2:tFormalExpression" language="axelor">saleOrder?.status == '3'</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
-    <bpmn2:sequenceFlow id="Flow_1hjkl7n" sourceRef="Activity_16e4g0f" targetRef="Event_1tdc3mr" />
-    <bpmn2:serviceTask id="Activity_16e4g0f" name="director reject" camunda:class="com.axelor.apps.elicense.delegate.SendAxelorMessageDelegate">
+    <bpmn2:sequenceFlow id="Flow_1hjkl7n" sourceRef="Activity_16e4g0fttt" targetRef="Event_1tdc3mr" />
+    <bpmn2:serviceTask id="Activity_16e4g0fttt" name="director reject" camunda:class="com.axelor.apps.elicense.delegate.SendAxelorMessageDelegate">
       <bpmn2:extensionElements>
         <camunda:field name="userField" stringValue="createdBy" />
         <camunda:field name="modelName" stringValue="com.axelor.apps.sale.db.SaleOrder" />
@@ -471,7 +481,7 @@ return $ctx.save(rec)</bpmn2:script>
     <bpmn2:startEvent id="Event_06gccht">
       <bpmn2:outgoing>Flow_10rhscy</bpmn2:outgoing>
     </bpmn2:startEvent>
-    <bpmn2:sequenceFlow id="Flow_10rhscy" sourceRef="Event_06gccht" targetRef="Activity_09plxkl" />
+    <bpmn2:sequenceFlow id="Flow_10rhscy" sourceRef="Event_06gccht" targetRef="Activity_09plxklttt" />
   </bpmn2:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="TEST3">
@@ -496,16 +506,16 @@ return $ctx.save(rec)</bpmn2:script>
         <di:waypoint x="460" y="1400" />
         <di:waypoint x="525" y="1400" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0qa83vh_di" bpmnElement="Flow_0qa83vh" bioc:stroke="#8095b3" color:border-color="#8095b3">
+      <bpmndi:BPMNEdge id="Flow_0qa83vh_di" bpmnElement="Flow_0qa83vhtt" bioc:stroke="#8095b3" color:border-color="#8095b3">
         <di:waypoint x="550" y="1425" />
         <di:waypoint x="550" y="1470" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0e6vjx3_di" bpmnElement="Flow_0e6vjx3" bioc:stroke="#8095b3" color:border-color="#8095b3">
+      <bpmndi:BPMNEdge id="Flow_0e6vjx3_di" bpmnElement="Flow_0e6vjx3tt" bioc:stroke="#8095b3" color:border-color="#8095b3">
         <di:waypoint x="575" y="1230" />
         <di:waypoint x="650" y="1230" />
         <di:waypoint x="650" y="1280" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1viv6m8_di" bpmnElement="Flow_1viv6m8" bioc:stroke="#8095b3" color:border-color="#8095b3">
+      <bpmndi:BPMNEdge id="Flow_1viv6m8_di" bpmnElement="Flow_1viv6m8ttt" bioc:stroke="#8095b3" color:border-color="#8095b3">
         <di:waypoint x="525" y="1230" />
         <di:waypoint x="460" y="1230" />
         <di:waypoint x="460" y="1280" />
@@ -579,7 +589,7 @@ return $ctx.save(rec)</bpmn2:script>
         <di:waypoint x="550" y="1045" />
         <di:waypoint x="550" y="1080" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0qlamn5_di" bpmnElement="Flow_0qlamn5" bioc:stroke="#212121" color:border-color="#212121">
+      <bpmndi:BPMNEdge id="Flow_0qlamn5_di" bpmnElement="Flow_0qlamn5ttt" bioc:stroke="#212121" color:border-color="#212121">
         <di:waypoint x="525" y="1020" />
         <di:waypoint x="460" y="1020" />
       </bpmndi:BPMNEdge>
@@ -587,16 +597,16 @@ return $ctx.save(rec)</bpmn2:script>
         <di:waypoint x="550" y="450" />
         <di:waypoint x="550" y="550" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="Activity_0ypdu8v_di" bpmnElement="Activity_09plxkl" bioc:stroke="#3fbdd6" bioc:fill="#c5ebf3" color:background-color="#c5ebf3" color:border-color="#3fbdd6">
+      <bpmndi:BPMNShape id="Activity_0ypdu8v_di" bpmnElement="Activity_09plxklttt" bioc:stroke="#3fbdd6" bioc:fill="#c5ebf3" color:background-color="#c5ebf3" color:border-color="#3fbdd6">
         <dc:Bounds x="500" y="370" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0nyphvr_di" bpmnElement="Activity_01uxc3e" bioc:stroke="#3fbdd6" bioc:fill="#c5ebf3" color:background-color="#c5ebf3" color:border-color="#3fbdd6">
+      <bpmndi:BPMNShape id="Activity_0nyphvr_di" bpmnElement="Activity_01uxc3ettt" bioc:stroke="#3fbdd6" bioc:fill="#c5ebf3" color:background-color="#c5ebf3" color:border-color="#3fbdd6">
         <dc:Bounds x="500" y="550" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0y8fayh_di" bpmnElement="Activity_0fomku9" bioc:stroke="#3fbdd6" bioc:fill="#c5ebf3" color:background-color="#c5ebf3" color:border-color="#3fbdd6">
+      <bpmndi:BPMNShape id="Activity_0y8fayh_di" bpmnElement="Activity_0fomku9ttt" bioc:stroke="#3fbdd6" bioc:fill="#c5ebf3" color:background-color="#c5ebf3" color:border-color="#3fbdd6">
         <dc:Bounds x="360" y="890" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0wn4rqo_di" bpmnElement="Activity_0wn4rqo" bioc:stroke="#3fbdd6" bioc:fill="#c5ebf3" color:background-color="#c5ebf3" color:border-color="#3fbdd6">
+      <bpmndi:BPMNShape id="Activity_0wn4rqo_di" bpmnElement="Activity_0wn4rqott" bioc:stroke="#3fbdd6" bioc:fill="#c5ebf3" color:background-color="#c5ebf3" color:border-color="#3fbdd6">
         <dc:Bounds x="360" y="710" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_0q46ekf_di" bpmnElement="Gateway_0q46ekf" isMarkerVisible="true" bioc:stroke="#f9c000" bioc:fill="#fdecb3" color:background-color="#fdecb3" color:border-color="#f9c000">
@@ -605,22 +615,22 @@ return $ctx.save(rec)</bpmn2:script>
       <bpmndi:BPMNShape id="Event_0gxxghg_di" bpmnElement="Event_0gxxghg" bioc:stroke="#ff7043" bioc:fill="#ffd4c7" color:background-color="#ffd4c7" color:border-color="#ff7043">
         <dc:Bounds x="262" y="1002" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_02qqzqa_di" bpmnElement="Activity_1n3r3ic" bioc:stroke="#3fbdd6" bioc:fill="#c5ebf3" color:background-color="#c5ebf3" color:border-color="#3fbdd6">
+      <bpmndi:BPMNShape id="Activity_02qqzqa_di" bpmnElement="Activity_1n3r3icttt" bioc:stroke="#3fbdd6" bioc:fill="#c5ebf3" color:background-color="#c5ebf3" color:border-color="#3fbdd6">
         <dc:Bounds x="500" y="1470" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_04s58e3_di" bpmnElement="Activity_1l0cdtx" bioc:stroke="#3fbdd6" bioc:fill="#c5ebf3" color:background-color="#c5ebf3" color:border-color="#3fbdd6">
+      <bpmndi:BPMNShape id="Activity_04s58e3_di" bpmnElement="Activity_1l0cdtxttt" bioc:stroke="#3fbdd6" bioc:fill="#c5ebf3" color:background-color="#c5ebf3" color:border-color="#3fbdd6">
         <dc:Bounds x="500" y="1620" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_17mt5fw_di" bpmnElement="Gateway_17mt5fw" isMarkerVisible="true" bioc:stroke="#f9c000" bioc:fill="#fdecb3" color:background-color="#fdecb3" color:border-color="#f9c000">
+      <bpmndi:BPMNShape id="Gateway_17mt5fw_di" bpmnElement="Gateway_17mt5fwttt" isMarkerVisible="true" bioc:stroke="#f9c000" bioc:fill="#fdecb3" color:background-color="#fdecb3" color:border-color="#f9c000">
         <dc:Bounds x="655" y="1635" width="50" height="50" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1tdc3mr_di" bpmnElement="Event_1tdc3mr" bioc:stroke="#ff7043" bioc:fill="#ffd4c7" color:background-color="#ffd4c7" color:border-color="#ff7043">
         <dc:Bounds x="662" y="1912" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_08j76zg_di" bpmnElement="Activity_0o4wwwh" bioc:stroke="#3ebfa5" bioc:fill="#c5ece4" color:background-color="#c5ece4" color:border-color="#3ebfa5">
+      <bpmndi:BPMNShape id="Activity_08j76zg_di" bpmnElement="Activity_0o4wwwhttt" bioc:stroke="#3ebfa5" bioc:fill="#c5ece4" color:background-color="#c5ece4" color:border-color="#3ebfa5">
         <dc:Bounds x="360" y="980" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1ohj748_di" bpmnElement="Activity_1ulfp44" bioc:stroke="#ff9e0f" bioc:fill="#ffeed4" color:background-color="#ffeed4" color:border-color="#ff9e0f">
+      <bpmndi:BPMNShape id="Activity_1ohj748_di" bpmnElement="Activity_1ulfp44ttt" bioc:stroke="#ff9e0f" bioc:fill="#ffeed4" color:background-color="#ffeed4" color:border-color="#ff9e0f">
         <dc:Bounds x="760" y="1620" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_1iq4upx_di" bpmnElement="Gateway_1cibq50" bioc:stroke="#f9c000" bioc:fill="#fdecb3" color:background-color="#fdecb3" color:border-color="#f9c000">
@@ -629,16 +639,16 @@ return $ctx.save(rec)</bpmn2:script>
       <bpmndi:BPMNShape id="Gateway_1173zzs_di" bpmnElement="Gateway_0q7kocd" bioc:stroke="#f9c000" bioc:fill="#fdecb3" color:background-color="#fdecb3" color:border-color="#f9c000">
         <dc:Bounds x="525" y="725" width="50" height="50" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1s8yxyu_di" bpmnElement="Activity_0wjqbdf" bioc:stroke="#3fbdd6" bioc:fill="#c5ebf3" color:background-color="#c5ebf3" color:border-color="#3fbdd6">
+      <bpmndi:BPMNShape id="Activity_1s8yxyu_di" bpmnElement="Activity_0wjqbdftt" bioc:stroke="#3fbdd6" bioc:fill="#c5ebf3" color:background-color="#c5ebf3" color:border-color="#3fbdd6">
         <dc:Bounds x="630" y="800" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1eo1lbi_di" bpmnElement="Activity_0ykw2qh" bioc:stroke="#3ebfa5" bioc:fill="#c5ece4" color:background-color="#c5ece4" color:border-color="#3ebfa5">
+      <bpmndi:BPMNShape id="Activity_1eo1lbi_di" bpmnElement="Activity_0ykw2qhtt" bioc:stroke="#3ebfa5" bioc:fill="#c5ece4" color:background-color="#c5ece4" color:border-color="#3ebfa5">
         <dc:Bounds x="760" y="1760" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_12n7q3h_di" bpmnElement="Activity_1jjcsh7" bioc:stroke="#3fbdd6" bioc:fill="#c5ebf3" color:background-color="#c5ebf3" color:border-color="#3fbdd6">
+      <bpmndi:BPMNShape id="Activity_12n7q3h_di" bpmnElement="Activity_1jjcsh7ttt" bioc:stroke="#3fbdd6" bioc:fill="#c5ebf3" color:background-color="#c5ebf3" color:border-color="#3fbdd6">
         <dc:Bounds x="410" y="1280" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_07fhg19_di" bpmnElement="Activity_120f7xo" bioc:stroke="#3fbdd6" bioc:fill="#c5ebf3" color:background-color="#c5ebf3" color:border-color="#3fbdd6">
+      <bpmndi:BPMNShape id="Activity_07fhg19_di" bpmnElement="Activity_120f7xott" bioc:stroke="#3fbdd6" bioc:fill="#c5ebf3" color:background-color="#c5ebf3" color:border-color="#3fbdd6">
         <dc:Bounds x="600" y="1280" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_09fnp2r_di" bpmnElement="Gateway_0eehbyu" bioc:stroke="#f9c000" bioc:fill="#fdecb3" color:background-color="#fdecb3" color:border-color="#f9c000">
@@ -647,10 +657,10 @@ return $ctx.save(rec)</bpmn2:script>
       <bpmndi:BPMNShape id="Gateway_1xqsseg_di" bpmnElement="Gateway_0o4esrn" bioc:stroke="#f9c000" bioc:fill="#fdecb3" color:background-color="#fdecb3" color:border-color="#f9c000">
         <dc:Bounds x="525" y="1375" width="50" height="50" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_078zq13_di" bpmnElement="Activity_0yvpykn" bioc:stroke="#3ebfa5" bioc:fill="#c5ece4" color:background-color="#c5ece4" color:border-color="#3ebfa5">
+      <bpmndi:BPMNShape id="Activity_078zq13_di" bpmnElement="Activity_0yvpyknttt" bioc:stroke="#3ebfa5" bioc:fill="#c5ece4" color:background-color="#c5ece4" color:border-color="#3ebfa5">
         <dc:Bounds x="500" y="1080" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1569hhq_di" bpmnElement="Activity_16e4g0f" bioc:stroke="#3ebfa5" bioc:fill="#c5ece4" color:background-color="#c5ece4" color:border-color="#3ebfa5">
+      <bpmndi:BPMNShape id="Activity_1569hhq_di" bpmnElement="Activity_16e4g0fttt" bioc:stroke="#3ebfa5" bioc:fill="#c5ece4" color:background-color="#c5ece4" color:border-color="#3ebfa5">
         <dc:Bounds x="630" y="1760" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_06gccht_di" bpmnElement="Event_06gccht" bioc:stroke="#55c041" bioc:fill="#ccecc6" color:background-color="#ccecc6" color:border-color="#55c041">
