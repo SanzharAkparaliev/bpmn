@@ -68,9 +68,9 @@
           <camunda:property name="item" value="appointCommission" />
           <camunda:property name="hidden" value="false" />
           <camunda:property name="itemType" value="button" />
-          <camunda:property name="itemLabel" value="Назначит коммисию" />
+          <camunda:property name="itemLabel" value="Appoint an employee" />
           <camunda:property name="permanent" value="false" />
-          <camunda:property name="item" value="setCommission" />
+          <camunda:property name="item" value="setReCommission" />
           <camunda:property name="hidden" value="false" />
           <camunda:property name="itemType" value="MANY_TO_MANY" />
           <camunda:property name="itemLabel" value="Комиссия" />
