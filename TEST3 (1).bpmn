@@ -3,7 +3,7 @@
   <bpmn2:process id="TEST3" isExecutable="true">
     <bpmn2:extensionElements>
       <camunda:processConfiguration>
-        <camunda:processConfigurationParameter metaModel="SaleOrder" pathCondition="saleOrder?.statusSelect == 1 &#38;&#38; saleOrder?.product == &#39;1&#39;" isStartModel="true" isDirectCreation="false" isCustom="false" model="com.axelor.apps.sale.db.SaleOrder" metaModelFullName="com.axelor.apps.sale.db.SaleOrder" title="Sale order" />
+        <camunda:processConfigurationParameter metaModel="SaleOrder" pathCondition="saleOrder?.statusSelect == 1 &#38;&#38; saleOrder?.product == &#39;1&#39; &#38;&#38; saleOrder?.typeOfApplicant == false" isStartModel="true" isDirectCreation="false" isCustom="false" model="com.axelor.apps.sale.db.SaleOrder" metaModelFullName="com.axelor.apps.sale.db.SaleOrder" title="Sale order" />
       </camunda:processConfiguration>
     </bpmn2:extensionElements>
     <bpmn2:userTask id="Activity_09plxklttt" name="clerk" camunda:completedIf="saleOrder?.statusSelect == 2 &#38;&#38; saleOrder?.registerSedNumber != null">
