@@ -46,18 +46,6 @@
       <bpmn2:incoming>Flow_10rhscy</bpmn2:incoming>
       <bpmn2:outgoing>Flow_0y1bt3t</bpmn2:outgoing>
     </bpmn2:userTask>
-    <bpmn2:exclusiveGateway id="Gateway_0q46ekfccc" default="Flow_1tei0wkccc">
-      <bpmn2:incoming>Flow_1s33ipu</bpmn2:incoming>
-      <bpmn2:outgoing>Flow_0qlamn5wwwccc</bpmn2:outgoing>
-      <bpmn2:outgoing>Flow_1tei0wkccc</bpmn2:outgoing>
-    </bpmn2:exclusiveGateway>
-    <bpmn2:endEvent id="Event_0gxxghgccc">
-      <bpmn2:incoming>Flow_1c0qugdccc</bpmn2:incoming>
-    </bpmn2:endEvent>
-    <bpmn2:sequenceFlow id="Flow_0qlamn5wwwccc" sourceRef="Gateway_0q46ekfccc" targetRef="Activity_0o4wwwhwwccc">
-      <bpmn2:conditionExpression xs:type="bpmn2:tFormalExpression" language="axelor">saleOrder?.commissionThirdVote == false</bpmn2:conditionExpression>
-    </bpmn2:sequenceFlow>
-    <bpmn2:sequenceFlow id="Flow_1tei0wkccc" sourceRef="Gateway_0q46ekfccc" targetRef="Activity_0yvpyknwwccc" />
     <bpmn2:userTask id="Activity_1n3r3icwwccc" name="chairman" camunda:completedIf="saleOrder?.statusSelect == 4">
       <bpmn2:extensionElements>
         <camunda:properties>
@@ -106,7 +94,7 @@
         </camunda:properties>
       </bpmn2:extensionElements>
       <bpmn2:incoming>Flow_1s9nrgcwwccc</bpmn2:incoming>
-      <bpmn2:incoming>Flow_1ptlrmf</bpmn2:incoming>
+      <bpmn2:incoming>Flow_0y1bt3t</bpmn2:incoming>
       <bpmn2:outgoing>Flow_1izxpjtccc</bpmn2:outgoing>
     </bpmn2:userTask>
     <bpmn2:sequenceFlow id="Flow_1izxpjtccc" sourceRef="Activity_1n3r3icwwccc" targetRef="Activity_1l0cdtxwwwccc" />
@@ -179,64 +167,9 @@
       <bpmn2:incoming>Flow_1hjkl7n</bpmn2:incoming>
       <bpmn2:incoming>Flow_18sk3y9</bpmn2:incoming>
     </bpmn2:endEvent>
-    <bpmn2:sequenceFlow id="Flow_1c0qugdccc" sourceRef="Activity_0o4wwwhwwccc" targetRef="Event_0gxxghgccc" />
-    <bpmn2:serviceTask id="Activity_0o4wwwhwwccc" name="commission reject" camunda:class="com.axelor.apps.elicense.delegate.SendAxelorMessageDelegate">
-      <bpmn2:extensionElements>
-        <camunda:field name="userField" stringValue="createdBy" />
-        <camunda:field name="modelName" stringValue="com.axelor.apps.sale.db.SaleOrder" />
-        <camunda:field name="isPartner" stringValue="false" />
-        <camunda:field name="messageBody">
-          <camunda:string>&lt;p&gt;Ваша заявка была отклонена комиссией.&lt;br&gt; Для получения дополнительных подробностей о причинах отклонения,&lt;br&gt; пожалуйста, просмотрите вашу заявку.&lt;/p&gt;</camunda:string>
-        </camunda:field>
-      </bpmn2:extensionElements>
-      <bpmn2:incoming>Flow_0qlamn5wwwccc</bpmn2:incoming>
-      <bpmn2:outgoing>Flow_1c0qugdccc</bpmn2:outgoing>
-    </bpmn2:serviceTask>
     <bpmn2:sequenceFlow id="Flow_18sk3y9" sourceRef="Gateway_17mt5fwccc" targetRef="Event_1tdc3mr">
       <bpmn2:conditionExpression xs:type="bpmn2:tFormalExpression" language="axelor">saleOrder?.status == '4'</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
-    <bpmn2:userTask id="Activity_0wjqbdfwwwcccc" name="chairman" camunda:completedIf="saleOrder?.commissionThird != null">
-      <bpmn2:extensionElements>
-        <camunda:properties>
-          <camunda:property name="model" value="com.axelor.apps.sale.db.SaleOrder" />
-          <camunda:property name="modelName" value="SaleOrder" />
-          <camunda:property name="modelLabel" value="Sale order" />
-          <camunda:property name="modelType" value="metaModel" />
-          <camunda:property name="view" value="elicense.request.form" />
-          <camunda:property name="viewLabel" value="Request" />
-          <camunda:property name="roles" value="Chairman,Commission" />
-          <camunda:property name="itemType" value="button" />
-          <camunda:property name="itemLabel" value="Rejeter" />
-          <camunda:property name="permanent" value="false" />
-          <camunda:property name="item" value="reject2" />
-          <camunda:property name="hidden" value="false" />
-          <camunda:property name="itemType" value="button" />
-          <camunda:property name="itemLabel" value="Accept" />
-          <camunda:property name="permanent" value="false" />
-          <camunda:property name="item" value="approve2" />
-          <camunda:property name="hidden" value="false" />
-          <camunda:property name="itemType" value="panel" />
-          <camunda:property name="itemLabel" value="Commission" />
-          <camunda:property name="permanent" value="false" />
-          <camunda:property name="item" value="commission-panel" />
-          <camunda:property name="hidden" value="false" />
-        </camunda:properties>
-      </bpmn2:extensionElements>
-      <bpmn2:incoming>Flow_0y1bt3t</bpmn2:incoming>
-      <bpmn2:outgoing>Flow_1s33ipu</bpmn2:outgoing>
-    </bpmn2:userTask>
-    <bpmn2:serviceTask id="Activity_0yvpyknwwccc" name="commission approve" camunda:class="com.axelor.apps.elicense.delegate.SendAxelorMessageDelegate">
-      <bpmn2:extensionElements>
-        <camunda:field name="userField" stringValue="createdBy" />
-        <camunda:field name="modelName" stringValue="com.axelor.apps.sale.db.SaleOrder" />
-        <camunda:field name="isPartner" stringValue="false" />
-        <camunda:field name="messageBody">
-          <camunda:string>&lt;p&gt;Ваша заявка была принята комиссией.&lt;/p&gt;</camunda:string>
-        </camunda:field>
-      </bpmn2:extensionElements>
-      <bpmn2:incoming>Flow_1tei0wkccc</bpmn2:incoming>
-      <bpmn2:outgoing>Flow_1ptlrmf</bpmn2:outgoing>
-    </bpmn2:serviceTask>
     <bpmn2:sequenceFlow id="Flow_0u2oorp" sourceRef="Gateway_17mt5fwccc" targetRef="Activity_16e4g0fwwcccc">
       <bpmn2:conditionExpression xs:type="bpmn2:tFormalExpression" language="axelor">saleOrder?.status == '3'</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
@@ -257,27 +190,17 @@
       <bpmn2:outgoing>Flow_10rhscy</bpmn2:outgoing>
     </bpmn2:startEvent>
     <bpmn2:sequenceFlow id="Flow_10rhscy" sourceRef="Event_06gcchtcccc" targetRef="Activity_01uxc3ewwccc" />
-    <bpmn2:sequenceFlow id="Flow_0y1bt3t" sourceRef="Activity_01uxc3ewwccc" targetRef="Activity_0wjqbdfwwwcccc" />
-    <bpmn2:sequenceFlow id="Flow_1s33ipu" sourceRef="Activity_0wjqbdfwwwcccc" targetRef="Gateway_0q46ekfccc" />
-    <bpmn2:sequenceFlow id="Flow_1ptlrmf" sourceRef="Activity_0yvpyknwwccc" targetRef="Activity_1n3r3icwwccc" />
+    <bpmn2:sequenceFlow id="Flow_0y1bt3t" sourceRef="Activity_01uxc3ewwccc" targetRef="Activity_1n3r3icwwccc" />
   </bpmn2:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="CASE">
-      <bpmndi:BPMNEdge id="Flow_1ptlrmf_di" bpmnElement="Flow_1ptlrmf" bioc:stroke="#8095b3" color:border-color="#8095b3">
-        <di:waypoint x="550" y="980" />
+      <bpmndi:BPMNEdge id="Flow_0y1bt3t_di" bpmnElement="Flow_0y1bt3t" bioc:stroke="#8095b3" color:border-color="#8095b3">
+        <di:waypoint x="550" y="990" />
         <di:waypoint x="550" y="1070" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1s33ipu_di" bpmnElement="Flow_1s33ipu" bioc:stroke="#8095b3" color:border-color="#8095b3">
-        <di:waypoint x="550" y="650" />
-        <di:waypoint x="550" y="765" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0y1bt3t_di" bpmnElement="Flow_0y1bt3t" bioc:stroke="#8095b3" color:border-color="#8095b3">
-        <di:waypoint x="550" y="480" />
-        <di:waypoint x="550" y="570" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_10rhscy_di" bpmnElement="Flow_10rhscy" bioc:stroke="#8095b3" color:border-color="#8095b3">
-        <di:waypoint x="550" y="308" />
-        <di:waypoint x="550" y="400" />
+        <di:waypoint x="550" y="848" />
+        <di:waypoint x="550" y="910" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1hjkl7n_di" bpmnElement="Flow_1hjkl7n" bioc:stroke="#8095b3" color:border-color="#8095b3">
         <di:waypoint x="680" y="1480" />
@@ -290,10 +213,6 @@
       <bpmndi:BPMNEdge id="Flow_18sk3y9_di" bpmnElement="Flow_18sk3y9" bioc:stroke="#909090" color:border-color="#909090">
         <di:waypoint x="680" y="1295" />
         <di:waypoint x="680" y="1542" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1c0qugd_di" bpmnElement="Flow_1c0qugdccc" bioc:stroke="#8095b3" color:border-color="#8095b3">
-        <di:waypoint x="240" y="790" />
-        <di:waypoint x="98" y="790" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1s9nrgc_di" bpmnElement="Flow_1s9nrgcwwccc" bioc:stroke="#212121" color:border-color="#212121">
         <di:waypoint x="680" y="1245" />
@@ -308,23 +227,6 @@
         <di:waypoint x="550" y="1150" />
         <di:waypoint x="550" y="1230" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1tei0wk_di" bpmnElement="Flow_1tei0wkccc" bioc:stroke="#909090" color:border-color="#909090">
-        <di:waypoint x="550" y="815" />
-        <di:waypoint x="550" y="900" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0qlamn5_di" bpmnElement="Flow_0qlamn5wwwccc" bioc:stroke="#212121" color:border-color="#212121">
-        <di:waypoint x="525" y="790" />
-        <di:waypoint x="340" y="790" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="Activity_0nyphvr_di" bpmnElement="Activity_01uxc3ewwccc" bioc:stroke="#3fbdd6" bioc:fill="#c5ebf3" color:background-color="#c5ebf3" color:border-color="#3fbdd6">
-        <dc:Bounds x="500" y="400" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_0q46ekf_di" bpmnElement="Gateway_0q46ekfccc" isMarkerVisible="true" bioc:stroke="#f9c000" bioc:fill="#fdecb3" color:background-color="#fdecb3" color:border-color="#f9c000">
-        <dc:Bounds x="525" y="765" width="50" height="50" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0gxxghg_di" bpmnElement="Event_0gxxghgccc" bioc:stroke="#ff7043" bioc:fill="#ffd4c7" color:background-color="#ffd4c7" color:border-color="#ff7043">
-        <dc:Bounds x="62" y="772" width="36" height="36" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_02qqzqa_di" bpmnElement="Activity_1n3r3icwwccc" bioc:stroke="#3fbdd6" bioc:fill="#c5ebf3" color:background-color="#c5ebf3" color:border-color="#3fbdd6">
         <dc:Bounds x="500" y="1070" width="100" height="80" />
       </bpmndi:BPMNShape>
@@ -337,20 +239,14 @@
       <bpmndi:BPMNShape id="Event_1tdc3mr_di" bpmnElement="Event_1tdc3mr" bioc:stroke="#ff7043" bioc:fill="#ffd4c7" color:background-color="#ffd4c7" color:border-color="#ff7043">
         <dc:Bounds x="662" y="1542" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_08j76zg_di" bpmnElement="Activity_0o4wwwhwwccc" bioc:stroke="#3ebfa5" bioc:fill="#c5ece4" color:background-color="#c5ece4" color:border-color="#3ebfa5">
-        <dc:Bounds x="240" y="750" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1s8yxyu_di" bpmnElement="Activity_0wjqbdfwwwcccc" bioc:stroke="#3fbdd6" bioc:fill="#c5ebf3" color:background-color="#c5ebf3" color:border-color="#3fbdd6">
-        <dc:Bounds x="500" y="570" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_078zq13_di" bpmnElement="Activity_0yvpyknwwccc" bioc:stroke="#3ebfa5" bioc:fill="#c5ece4" color:background-color="#c5ece4" color:border-color="#3ebfa5">
-        <dc:Bounds x="500" y="900" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1569hhq_di" bpmnElement="Activity_16e4g0fwwcccc" bioc:stroke="#3ebfa5" bioc:fill="#c5ece4" color:background-color="#c5ece4" color:border-color="#3ebfa5">
         <dc:Bounds x="630" y="1400" width="100" height="80" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0nyphvr_di" bpmnElement="Activity_01uxc3ewwccc" bioc:stroke="#3fbdd6" bioc:fill="#c5ebf3" color:background-color="#c5ebf3" color:border-color="#3fbdd6">
+        <dc:Bounds x="500" y="910" width="100" height="80" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_06gccht_di" bpmnElement="Event_06gcchtcccc" bioc:stroke="#55c041" bioc:fill="#ccecc6" color:background-color="#ccecc6" color:border-color="#55c041">
-        <dc:Bounds x="532" y="272" width="36" height="36" />
+        <dc:Bounds x="532" y="812" width="36" height="36" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
