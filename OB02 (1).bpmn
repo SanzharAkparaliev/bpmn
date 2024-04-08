@@ -1,0 +1,708 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xs:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd" camunda:code="OB02" camunda:diagramName="OB02" camunda:wkfStatusColor="blue">
+  <bpmn2:collaboration id="Collaboration_140odnu">
+    <bpmn2:participant id="Participant_1hk0rfi" processRef="ob02" />
+  </bpmn2:collaboration>
+  <bpmn2:process id="ob02" isExecutable="true">
+    <bpmn2:extensionElements>
+      <camunda:processConfiguration>
+        <camunda:processConfigurationParameter metaModel="SaleOrder" pathCondition="saleOrder?.product == &#39;1&#39; &#38;&#38; saleOrder?.statusSelect == 1" isStartModel="true" isDirectCreation="false" isCustom="false" model="com.axelor.apps.sale.db.SaleOrder" metaModelFullName="com.axelor.apps.sale.db.SaleOrder" title="Sale order" />
+      </camunda:processConfiguration>
+    </bpmn2:extensionElements>
+    <bpmn2:laneSet id="LaneSet_0iuhf0m">
+      <bpmn2:lane id="Lane_1yognlw" name="commissions">
+        <bpmn2:flowNodeRef>Gateway_0pxljqg</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_1innsdb</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_1se51dh</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_00pxd9c</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_1tcvkbc</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_0oxwhkf</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_1mdki2w</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_0p4d5e8</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_1n2um8z</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Event_1chj1nx</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_1gugqaz</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_1bodajw</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_1982n1e</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_169w1zp</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+      <bpmn2:lane id="Lane_0r9jxhi" name="director">
+        <bpmn2:flowNodeRef>Event_06b33bk</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_1betm9f</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_125oyja</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_1i24wm3</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_1nyksjd</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_06by04m</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Gateway_1tdg2uz</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+      <bpmn2:lane id="Lane_0a4cbat" name="clerk">
+        <bpmn2:flowNodeRef>StartEvent_1</bpmn2:flowNodeRef>
+        <bpmn2:flowNodeRef>Activity_05wll92</bpmn2:flowNodeRef>
+      </bpmn2:lane>
+    </bpmn2:laneSet>
+    <bpmn2:sequenceFlow id="Flow_0uu34vg" sourceRef="StartEvent_1" targetRef="Activity_05wll92" />
+    <bpmn2:sequenceFlow id="Flow_106b877" sourceRef="Activity_05wll92" targetRef="Activity_1nyksjd" />
+    <bpmn2:sequenceFlow id="Flow_11bd577" sourceRef="Activity_1nyksjd" targetRef="Gateway_0pxljqg" />
+    <bpmn2:sequenceFlow id="Flow_0trfv3t" sourceRef="Gateway_0pxljqg" targetRef="Activity_0p4d5e8" />
+    <bpmn2:sequenceFlow id="Flow_1wb61id" sourceRef="Gateway_0pxljqg" targetRef="Activity_1mdki2w" />
+    <bpmn2:sequenceFlow id="Flow_1mk7qkv" sourceRef="Gateway_0pxljqg" targetRef="Activity_0oxwhkf" />
+    <bpmn2:sequenceFlow id="Flow_1o30rxv" sourceRef="Activity_0oxwhkf" targetRef="Gateway_1innsdb" />
+    <bpmn2:sequenceFlow id="Flow_1rnj66g" sourceRef="Activity_1mdki2w" targetRef="Gateway_1innsdb" />
+    <bpmn2:sequenceFlow id="Flow_1pqyi0c" sourceRef="Activity_0p4d5e8" targetRef="Gateway_1innsdb" />
+    <bpmn2:parallelGateway id="Gateway_0pxljqg">
+      <bpmn2:incoming>Flow_11bd577</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1wb61id</bpmn2:outgoing>
+      <bpmn2:outgoing>Flow_0trfv3t</bpmn2:outgoing>
+      <bpmn2:outgoing>Flow_1mk7qkv</bpmn2:outgoing>
+    </bpmn2:parallelGateway>
+    <bpmn2:parallelGateway id="Gateway_1innsdb">
+      <bpmn2:incoming>Flow_1o30rxv</bpmn2:incoming>
+      <bpmn2:incoming>Flow_1rnj66g</bpmn2:incoming>
+      <bpmn2:incoming>Flow_1pqyi0c</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1i0fr4n</bpmn2:outgoing>
+    </bpmn2:parallelGateway>
+    <bpmn2:sequenceFlow id="Flow_1i0fr4n" sourceRef="Gateway_1innsdb" targetRef="Gateway_1se51dh" />
+    <bpmn2:sequenceFlow id="Flow_0c9hzet" sourceRef="Gateway_1se51dh" targetRef="Gateway_00pxd9c" />
+    <bpmn2:sequenceFlow id="Flow_04z4e9z" sourceRef="Gateway_1se51dh" targetRef="Activity_1n2um8z">
+      <bpmn2:conditionExpression xs:type="bpmn2:tFormalExpression" language="axelor">saleOrder?.commissionFirstChoice == 2 &amp;&amp; saleOrder?.commissionSecondChoice == 2 &amp;&amp; saleOrder?.commissionThirdChoice == 2</bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="Flow_0fax9dr" sourceRef="Activity_1n2um8z" targetRef="Event_1chj1nx" />
+    <bpmn2:startEvent id="StartEvent_1">
+      <bpmn2:outgoing>Flow_0uu34vg</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:userTask id="Activity_05wll92" name="1" camunda:completedIf="saleOrder?.statusSelect == 2 &#38;&#38; saleOrder?.registerSedNumber != null">
+      <bpmn2:extensionElements>
+        <camunda:properties>
+          <camunda:property name="model" value="com.axelor.apps.sale.db.SaleOrder" />
+          <camunda:property name="modelName" value="SaleOrder" />
+          <camunda:property name="modelLabel" value="Sale order" />
+          <camunda:property name="modelType" value="metaModel" />
+          <camunda:property name="view" value="elicense.request.obtaining-license.form" />
+          <camunda:property name="viewLabel" value="Request" />
+          <camunda:property name="roles" value="Сlerk" />
+          <camunda:property name="itemType" value="DATE" />
+          <camunda:property name="itemLabel" value="SED date" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="registerSedDate" />
+          <camunda:property name="required" value="true" />
+          <camunda:property name="itemType" value="STRING" />
+          <camunda:property name="itemLabel" value="SED number" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="registerSedNumber" />
+          <camunda:property name="required" value="true" />
+          <camunda:property name="itemType" value="panel" />
+          <camunda:property name="itemLabel" value="SED" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="clerk-panel" />
+          <camunda:property name="hidden" value="false" />
+        </camunda:properties>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_0uu34vg</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_106b877</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="Flow_0424are" sourceRef="Gateway_00pxd9c" targetRef="Activity_1982n1e" />
+    <bpmn2:sequenceFlow id="Flow_0u70k77" sourceRef="Gateway_00pxd9c" targetRef="Activity_1bodajw" />
+    <bpmn2:sequenceFlow id="Flow_1ntsyf3" sourceRef="Gateway_00pxd9c" targetRef="Activity_1gugqaz" />
+    <bpmn2:exclusiveGateway id="Gateway_1se51dh" default="Flow_0c9hzet">
+      <bpmn2:incoming>Flow_1i0fr4n</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0c9hzet</bpmn2:outgoing>
+      <bpmn2:outgoing>Flow_04z4e9z</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:parallelGateway id="Gateway_00pxd9c">
+      <bpmn2:incoming>Flow_0c9hzet</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0424are</bpmn2:outgoing>
+      <bpmn2:outgoing>Flow_0u70k77</bpmn2:outgoing>
+      <bpmn2:outgoing>Flow_1ntsyf3</bpmn2:outgoing>
+    </bpmn2:parallelGateway>
+    <bpmn2:sequenceFlow id="Flow_1lpo6fw" sourceRef="Activity_1982n1e" targetRef="Gateway_1tcvkbc" />
+    <bpmn2:sequenceFlow id="Flow_0s1p3bu" sourceRef="Activity_1bodajw" targetRef="Gateway_1tcvkbc" />
+    <bpmn2:parallelGateway id="Gateway_1tcvkbc">
+      <bpmn2:incoming>Flow_1lpo6fw</bpmn2:incoming>
+      <bpmn2:incoming>Flow_0s1p3bu</bpmn2:incoming>
+      <bpmn2:incoming>Flow_166lpbc</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0qns0ar</bpmn2:outgoing>
+    </bpmn2:parallelGateway>
+    <bpmn2:sequenceFlow id="Flow_0qns0ar" sourceRef="Gateway_1tcvkbc" targetRef="Gateway_1tdg2uz" />
+    <bpmn2:sequenceFlow id="Flow_0lud653" sourceRef="Gateway_1tdg2uz" targetRef="Activity_1betm9f">
+      <bpmn2:conditionExpression xs:type="bpmn2:tFormalExpression" language="axelor">saleOrder?.status == '4'</bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="Flow_1kpvh2i" sourceRef="Gateway_1tdg2uz" targetRef="Activity_1i24wm3">
+      <bpmn2:conditionExpression xs:type="bpmn2:tFormalExpression" language="axelor">saleOrder?.status == '3'</bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="Flow_07hmf8a" sourceRef="Activity_1betm9f" targetRef="Activity_125oyja" />
+    <bpmn2:sequenceFlow id="Flow_0la3k31" sourceRef="Activity_125oyja" targetRef="Event_06b33bk" />
+    <bpmn2:sequenceFlow id="Flow_063p624" sourceRef="Activity_1i24wm3" targetRef="Event_06b33bk" />
+    <bpmn2:userTask id="Activity_0oxwhkf" name="3" camunda:completedIf="saleOrder?.commissionFirstChoice != null &#38;&#38; saleOrder?.commissionFirstChoice != 0">
+      <bpmn2:extensionElements>
+        <camunda:properties>
+          <camunda:property name="model" value="com.axelor.apps.sale.db.SaleOrder" />
+          <camunda:property name="modelName" value="SaleOrder" />
+          <camunda:property name="modelLabel" value="Sale order" />
+          <camunda:property name="modelType" value="metaModel" />
+          <camunda:property name="view" value="elicense.request.obtaining-license.form" />
+          <camunda:property name="viewLabel" value="Request" />
+          <camunda:property name="roles" value="Commission" />
+          <camunda:property name="itemType" value="button" />
+          <camunda:property name="itemLabel" value="Rejeter" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="reject" />
+          <camunda:property name="hidden" value="false" />
+          <camunda:property name="itemType" value="button" />
+          <camunda:property name="itemLabel" value="Accept" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="approve" />
+          <camunda:property name="hidden" value="false" />
+          <camunda:property name="itemType" value="panel" />
+          <camunda:property name="itemLabel" value="Commission" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="commission-panel" />
+          <camunda:property name="hidden" value="false" />
+        </camunda:properties>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_1mk7qkv</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1o30rxv</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="Activity_1mdki2w" name="3" camunda:completedIf="saleOrder?.commissionSecondChoice != null &#38;&#38; saleOrder?.commissionSecondChoice != 0">
+      <bpmn2:extensionElements>
+        <camunda:properties>
+          <camunda:property name="model" value="com.axelor.apps.sale.db.SaleOrder" />
+          <camunda:property name="modelName" value="SaleOrder" />
+          <camunda:property name="modelLabel" value="Sale order" />
+          <camunda:property name="modelType" value="metaModel" />
+          <camunda:property name="view" value="elicense.request.obtaining-license.form" />
+          <camunda:property name="viewLabel" value="Request" />
+          <camunda:property name="roles" value="Commission" />
+          <camunda:property name="itemType" value="button" />
+          <camunda:property name="itemLabel" value="Rejeter" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="reject" />
+          <camunda:property name="hidden" value="false" />
+          <camunda:property name="itemType" value="button" />
+          <camunda:property name="itemLabel" value="Accept" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="approve" />
+          <camunda:property name="hidden" value="false" />
+          <camunda:property name="itemType" value="panel" />
+          <camunda:property name="itemLabel" value="Commission" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="commission-panel" />
+          <camunda:property name="hidden" value="false" />
+        </camunda:properties>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_1wb61id</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1rnj66g</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="Activity_0p4d5e8" name="3" camunda:completedIf="saleOrder?.commissionThirdChoice != null &#38;&#38; saleOrder?.commissionThirdChoice != 0">
+      <bpmn2:extensionElements>
+        <camunda:properties>
+          <camunda:property name="model" value="com.axelor.apps.sale.db.SaleOrder" />
+          <camunda:property name="modelName" value="SaleOrder" />
+          <camunda:property name="modelLabel" value="Sale order" />
+          <camunda:property name="modelType" value="metaModel" />
+          <camunda:property name="view" value="elicense.request.obtaining-license.form" />
+          <camunda:property name="viewLabel" value="Request" />
+          <camunda:property name="roles" value="Commission" />
+          <camunda:property name="itemType" value="button" />
+          <camunda:property name="itemLabel" value="Accept" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="approve" />
+          <camunda:property name="hidden" value="false" />
+          <camunda:property name="itemType" value="button" />
+          <camunda:property name="itemLabel" value="Rejeter" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="reject" />
+          <camunda:property name="hidden" value="false" />
+          <camunda:property name="itemType" value="panel" />
+          <camunda:property name="itemLabel" value="Commission" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="commission-panel" />
+          <camunda:property name="hidden" value="false" />
+        </camunda:properties>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_0trfv3t</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1pqyi0c</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:serviceTask id="Activity_1n2um8z" name="3.5" camunda:class="com.axelor.apps.elicense.delegate.SendAxelorMessageDelegate">
+      <bpmn2:incoming>Flow_04z4e9z</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0fax9dr</bpmn2:outgoing>
+    </bpmn2:serviceTask>
+    <bpmn2:endEvent id="Event_1chj1nx">
+      <bpmn2:incoming>Flow_0fax9dr</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:userTask id="Activity_1gugqaz" name="4" camunda:completedIf="saleOrder?.statusSelect == 4">
+      <bpmn2:extensionElements>
+        <camunda:properties>
+          <camunda:property name="model" value="com.axelor.apps.sale.db.SaleOrder" />
+          <camunda:property name="modelName" value="SaleOrder" />
+          <camunda:property name="modelLabel" value="Sale order" />
+          <camunda:property name="modelType" value="metaModel" />
+          <camunda:property name="view" value="elicense.request.obtaining-license.form" />
+          <camunda:property name="viewLabel" value="Request" />
+          <camunda:property name="roles" value="Commission" />
+          <camunda:property name="itemType" value="button" />
+          <camunda:property name="itemLabel" value="Send to director" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="sendToDirector" />
+          <camunda:property name="hidden" value="eval: __user__.id != commissionThird.id" />
+          <camunda:property name="itemType" value="ONE_TO_ONE" />
+          <camunda:property name="itemLabel" value="Conclusion" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="conclusion" />
+          <camunda:property name="readonly" value="eval: __user__.id != commissionThird.id" />
+          <camunda:property name="itemType" value="ONE_TO_ONE" />
+          <camunda:property name="itemLabel" value="Conclusion" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="conclusion" />
+          <camunda:property name="required" value="eval: __user__.id == commissionThird.id" />
+          <camunda:property name="itemType" value="TEXT" />
+          <camunda:property name="itemLabel" value="Commission second comment" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="commissionSecondComment" />
+          <camunda:property name="hidden" value="eval: __user__.id != commissionThird.id" />
+          <camunda:property name="itemType" value="TEXT" />
+          <camunda:property name="itemLabel" value="Commission first comment" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="commissionFirstComment" />
+          <camunda:property name="hidden" value="eval: __user__.id != commissionThird.id" />
+          <camunda:property name="itemType" value="ONE_TO_ONE" />
+          <camunda:property name="itemLabel" value="Conclusion" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="conclusion" />
+          <camunda:property name="hidden" value="eval: __user__.id != commissionThird.id" />
+          <camunda:property name="itemType" value="panel" />
+          <camunda:property name="itemLabel" value="Commission" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="commission-panel" />
+          <camunda:property name="hidden" value="false" />
+        </camunda:properties>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_1ntsyf3</bpmn2:incoming>
+      <bpmn2:incoming>Flow_0s67uzh</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0ibs6rp</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="Activity_1bodajw" name="4" camunda:completedIf="saleOrder?.commissionSecondComment != null">
+      <bpmn2:extensionElements>
+        <camunda:properties>
+          <camunda:property name="model" value="com.axelor.apps.sale.db.SaleOrder" />
+          <camunda:property name="modelName" value="SaleOrder" />
+          <camunda:property name="modelLabel" value="Sale order" />
+          <camunda:property name="modelType" value="metaModel" />
+          <camunda:property name="view" value="elicense.request.obtaining-license.form" />
+          <camunda:property name="viewLabel" value="Request" />
+          <camunda:property name="roles" value="Commission" />
+          <camunda:property name="itemType" value="field" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="$commissionComment" />
+          <camunda:property name="title" value="Commission first comment" />
+          <camunda:property name="itemType" value="button" />
+          <camunda:property name="itemLabel" value="Send" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="commissionCommentBtn" />
+          <camunda:property name="hidden" value="eval: __user__.id != commissionSecond.id" />
+          <camunda:property name="itemType" value="field" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="$commissionComment" />
+          <camunda:property name="required" value="eval: __user__.id == commissionSecond.id" />
+          <camunda:property name="itemType" value="field" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="$commissionComment" />
+          <camunda:property name="hidden" value="eval: __user__.id != commissionSecond.id" />
+          <camunda:property name="itemType" value="panel" />
+          <camunda:property name="itemLabel" value="Commission" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="commission-panel" />
+          <camunda:property name="hidden" value="false" />
+        </camunda:properties>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_0u70k77</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0s1p3bu</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="Activity_1982n1e" name="4" camunda:completedIf="saleOrder?.commissionFirstComment != null">
+      <bpmn2:extensionElements>
+        <camunda:properties>
+          <camunda:property name="model" value="com.axelor.apps.sale.db.SaleOrder" />
+          <camunda:property name="modelName" value="SaleOrder" />
+          <camunda:property name="modelLabel" value="Sale order" />
+          <camunda:property name="modelType" value="metaModel" />
+          <camunda:property name="view" value="elicense.request.obtaining-license.form" />
+          <camunda:property name="viewLabel" value="Request" />
+          <camunda:property name="roles" value="Commission" />
+          <camunda:property name="itemType" value="field" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="$commissionComment" />
+          <camunda:property name="title" value="Commission first comment" />
+          <camunda:property name="itemType" value="button" />
+          <camunda:property name="itemLabel" value="Send" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="commissionCommentBtn" />
+          <camunda:property name="hidden" value="eval: __user__.id != commissionFirst.id" />
+          <camunda:property name="itemType" value="field" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="$commissionComment" />
+          <camunda:property name="required" value="eval: __user__.id == commissionFirst.id" />
+          <camunda:property name="itemType" value="field" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="$commissionComment" />
+          <camunda:property name="hidden" value="eval: __user__.id != commissionFirst.id" />
+          <camunda:property name="itemType" value="panel" />
+          <camunda:property name="itemLabel" value="Commission" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="commission-panel" />
+          <camunda:property name="hidden" value="false" />
+        </camunda:properties>
+        <camunda:properties />
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_0424are</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_1lpo6fw</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:sequenceFlow id="Flow_0ibs6rp" sourceRef="Activity_1gugqaz" targetRef="Activity_06by04m" />
+    <bpmn2:sequenceFlow id="Flow_0s8nzhw" sourceRef="Activity_06by04m" targetRef="Gateway_169w1zp" />
+    <bpmn2:sequenceFlow id="Flow_166lpbc" sourceRef="Gateway_169w1zp" targetRef="Gateway_1tcvkbc" />
+    <bpmn2:sequenceFlow id="Flow_0s67uzh" sourceRef="Gateway_169w1zp" targetRef="Activity_1gugqaz">
+      <bpmn2:conditionExpression xs:type="bpmn2:tFormalExpression" language="axelor">saleOrder?.statusSelect == 3</bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:exclusiveGateway id="Gateway_169w1zp" default="Flow_166lpbc">
+      <bpmn2:incoming>Flow_0s8nzhw</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_166lpbc</bpmn2:outgoing>
+      <bpmn2:outgoing>Flow_0s67uzh</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:endEvent id="Event_06b33bk">
+      <bpmn2:incoming>Flow_0la3k31</bpmn2:incoming>
+      <bpmn2:incoming>Flow_063p624</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:scriptTask id="Activity_1betm9f" name="6" scriptFormat="axelor" camunda:scriptValue="{&#34;fields&#34;:[{&#34;name&#34;:&#34;applicant&#34;,&#34;type&#34;:&#34;MANY_TO_ONE&#34;,&#34;target&#34;:&#34;SaleOrder&#34;,&#34;condition&#34;:null,&#34;conditionMeta&#34;:null,&#34;value&#34;:{&#34;from&#34;:&#34;source&#34;,&#34;selected&#34;:{&#34;value&#34;:&#34;SOURCE&#34;},&#34;query&#34;:null,&#34;subFields&#34;:[{&#34;id&#34;:249,&#34;version&#34;:0,&#34;title&#34;:&#34;SOURCE&#34;,&#34;name&#34;:&#34;SaleOrder&#34;,&#34;type&#34;:&#34;metaModel&#34;,&#34;fullName&#34;:&#34;com.axelor.apps.sale.db.SaleOrder&#34;}]}},{&#34;name&#34;:&#34;kindOfActivity&#34;,&#34;type&#34;:&#34;STRING&#34;,&#34;condition&#34;:null,&#34;conditionMeta&#34;:null,&#34;value&#34;:{&#34;from&#34;:&#34;source&#34;,&#34;selected&#34;:{&#34;value&#34;:&#34;elicenseActivity&#34;},&#34;query&#34;:null,&#34;subFields&#34;:[{&#34;title&#34;:&#34;Elicense activity&#34;,&#34;name&#34;:&#34;elicenseActivity&#34;,&#34;type&#34;:&#34;STRING&#34;}]}},{&#34;name&#34;:&#34;organizationalLegal&#34;,&#34;type&#34;:&#34;STRING&#34;,&#34;condition&#34;:null,&#34;conditionMeta&#34;:null,&#34;value&#34;:{&#34;from&#34;:&#34;source&#34;,&#34;selected&#34;:{&#34;value&#34;:&#34;organizationalForm&#34;},&#34;query&#34;:null,&#34;subFields&#34;:[{&#34;title&#34;:&#34;Organizational form&#34;,&#34;name&#34;:&#34;organizationalForm&#34;,&#34;type&#34;:&#34;STRING&#34;}]}},{&#34;name&#34;:&#34;status&#34;,&#34;type&#34;:&#34;STRING&#34;,&#34;condition&#34;:null,&#34;conditionMeta&#34;:null,&#34;value&#34;:{&#34;from&#34;:&#34;none&#34;,&#34;selected&#34;:{&#34;value&#34;:&#34;current&#34;},&#34;query&#34;:null,&#34;subFields&#34;:[]}},{&#34;name&#34;:&#34;licensor&#34;,&#34;type&#34;:&#34;MANY_TO_ONE&#34;,&#34;target&#34;:&#34;Partner&#34;,&#34;condition&#34;:null,&#34;conditionMeta&#34;:null,&#34;value&#34;:{&#34;from&#34;:&#34;source&#34;,&#34;selected&#34;:{&#34;value&#34;:&#34;createdUser&#34;},&#34;query&#34;:null,&#34;subFields&#34;:[{&#34;title&#34;:&#34;User&#34;,&#34;name&#34;:&#34;createdUser&#34;,&#34;type&#34;:&#34;MANY_TO_ONE&#34;,&#34;target&#34;:&#34;com.axelor.apps.base.db.Partner&#34;}]}}],&#34;targetModel&#34;:&#34;Elicense&#34;,&#34;sourceModel&#34;:&#34;SaleOrder&#34;,&#34;sourceModelList&#34;:[{&#34;name&#34;:&#34;SaleOrder&#34;,&#34;fullName&#34;:&#34;com.axelor.apps.sale.db.SaleOrder&#34;,&#34;id&#34;:249,&#34;version&#34;:0,&#34;$wkfStatus&#34;:null,&#34;title&#34;:&#34;Sale order&#34;,&#34;type&#34;:&#34;metaModel&#34;}],&#34;newRecord&#34;:true,&#34;savedRecord&#34;:false,&#34;save&#34;:true,&#34;isJson&#34;:false,&#34;createVariable&#34;:false,&#34;processId&#34;:null,&#34;modelFrom&#34;:{&#34;title&#34;:&#34;Context&#34;,&#34;id&#34;:&#34;context&#34;}}">
+      <bpmn2:incoming>Flow_0lud653</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_07hmf8a</bpmn2:outgoing>
+      <bpmn2:script>def rec = $ctx.create('Elicense')
+def src = saleOrder
+rec.applicant = $ctx.find('SaleOrder',src?.id)?.getTarget()
+rec.kindOfActivity = src.elicenseActivity
+rec.organizationalLegal = src.organizationalForm
+rec.status = 'current'
+rec.licensor = $ctx.find('Partner',src.createdUser?.id)?.getTarget()
+return $ctx.save(rec)</bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:serviceTask id="Activity_125oyja" name="6.5" camunda:class="com.axelor.apps.elicense.delegate.SendAxelorMessageDelegate">
+      <bpmn2:incoming>Flow_07hmf8a</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0la3k31</bpmn2:outgoing>
+    </bpmn2:serviceTask>
+    <bpmn2:serviceTask id="Activity_1i24wm3" name="5.5" camunda:expression="com.axelor.apps.elicense.delegate.SendAxelorMessageDelegate">
+      <bpmn2:incoming>Flow_1kpvh2i</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_063p624</bpmn2:outgoing>
+    </bpmn2:serviceTask>
+    <bpmn2:userTask id="Activity_1nyksjd" name="2" camunda:completedIf="saleOrder?.statusSelect == 3">
+      <bpmn2:extensionElements>
+        <camunda:properties>
+          <camunda:property name="model" value="com.axelor.apps.sale.db.SaleOrder" />
+          <camunda:property name="modelName" value="SaleOrder" />
+          <camunda:property name="modelLabel" value="Sale order" />
+          <camunda:property name="modelType" value="metaModel" />
+          <camunda:property name="view" value="elicense.request.obtaining-license.form" />
+          <camunda:property name="viewLabel" value="Request" />
+          <camunda:property name="roles" value="Director" />
+          <camunda:property name="itemType" value="MANY_TO_ONE" />
+          <camunda:property name="itemLabel" value="Commission third" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="commissionThird" />
+          <camunda:property name="hidden" value="false" />
+          <camunda:property name="itemType" value="MANY_TO_ONE" />
+          <camunda:property name="itemLabel" value="Commission second" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="commissionSecond" />
+          <camunda:property name="hidden" value="false" />
+          <camunda:property name="itemType" value="MANY_TO_ONE" />
+          <camunda:property name="itemLabel" value="Commission first" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="commissionFirst" />
+          <camunda:property name="hidden" value="false" />
+          <camunda:property name="itemType" value="panel" />
+          <camunda:property name="itemLabel" value="Commission" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="commission-panel" />
+          <camunda:property name="hidden" value="false" />
+          <camunda:property name="model" value="com.axelor.apps.sale.db.SaleOrder" />
+          <camunda:property name="modelName" value="SaleOrder" />
+          <camunda:property name="modelLabel" value="Sale order" />
+          <camunda:property name="modelType" value="metaModel" />
+          <camunda:property name="view" value="elicense.request.obtaining-license.form" />
+          <camunda:property name="viewLabel" value="Request" />
+          <camunda:property name="roles" value="Director" />
+          <camunda:property name="itemType" value="button" />
+          <camunda:property name="itemLabel" value="Transfer commissions" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="appointCommission" />
+          <camunda:property name="hidden" value="false" />
+          <camunda:property name="itemType" value="button" />
+          <camunda:property name="itemLabel" value="Appoint a commission" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="setCommission" />
+          <camunda:property name="hidden" value="false" />
+          <camunda:property name="itemType" value="panel" />
+          <camunda:property name="itemLabel" value="Director" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="director-panel" />
+          <camunda:property name="hidden" value="false" />
+        </camunda:properties>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_106b877</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_11bd577</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:userTask id="Activity_06by04m" name="4.5" camunda:completedIf="saleOrder?.statusSelect == 3 || saleOrder?.decision != null">
+      <bpmn2:extensionElements>
+        <camunda:properties>
+          <camunda:property name="model" value="com.axelor.apps.sale.db.SaleOrder" />
+          <camunda:property name="modelName" value="SaleOrder" />
+          <camunda:property name="modelLabel" value="Sale order" />
+          <camunda:property name="modelType" value="metaModel" />
+          <camunda:property name="view" value="elicense.request.obtaining-license.form" />
+          <camunda:property name="viewLabel" value="Request" />
+          <camunda:property name="roles" value="Director" />
+          <camunda:property name="itemType" value="button" />
+          <camunda:property name="itemLabel" value="decision made" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="sign" />
+          <camunda:property name="hidden" value="false" />
+          <camunda:property name="itemType" value="button" />
+          <camunda:property name="itemLabel" value="Revision" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="revisionCommission" />
+          <camunda:property name="hidden" value="false" />
+          <camunda:property name="itemType" value="ONE_TO_ONE" />
+          <camunda:property name="itemLabel" value="Decision" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="decision" />
+          <camunda:property name="readonly" value="false" />
+          <camunda:property name="itemType" value="ONE_TO_ONE" />
+          <camunda:property name="itemLabel" value="Decision" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="decision" />
+          <camunda:property name="hidden" value="false" />
+          <camunda:property name="itemType" value="panel" />
+          <camunda:property name="itemLabel" value="Director" />
+          <camunda:property name="permanent" value="false" />
+          <camunda:property name="item" value="director-panel" />
+          <camunda:property name="hidden" value="false" />
+        </camunda:properties>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>Flow_0ibs6rp</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0s8nzhw</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:exclusiveGateway id="Gateway_1tdg2uz">
+      <bpmn2:incoming>Flow_0qns0ar</bpmn2:incoming>
+      <bpmn2:outgoing>Flow_0lud653</bpmn2:outgoing>
+      <bpmn2:outgoing>Flow_1kpvh2i</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_140odnu">
+      <bpmndi:BPMNShape id="Participant_1hk0rfi_di" bpmnElement="Participant_1hk0rfi" isHorizontal="true" bioc:stroke="#c8c8c8" color:border-color="#c8c8c8">
+        <dc:Bounds x="530" y="-341" width="1630" height="641" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0a4cbat_di" bpmnElement="Lane_0a4cbat" isHorizontal="true" bioc:stroke="#c8c8c8" color:border-color="#c8c8c8">
+        <dc:Bounds x="560" y="180" width="1600" height="120" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0r9jxhi_di" bpmnElement="Lane_0r9jxhi" isHorizontal="true" bioc:stroke="#c8c8c8" color:border-color="#c8c8c8">
+        <dc:Bounds x="560" y="-40" width="1600" height="220" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1yognlw_di" bpmnElement="Lane_1yognlw" isHorizontal="true" bioc:stroke="#c8c8c8" color:border-color="#c8c8c8">
+        <dc:Bounds x="560" y="-341" width="1600" height="301" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0s67uzh_di" bpmnElement="Flow_0s67uzh" bioc:stroke="#8095b3" color:border-color="#8095b3">
+        <di:waypoint x="1715" y="-100" />
+        <di:waypoint x="1670" y="-100" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_166lpbc_di" bpmnElement="Flow_166lpbc" bioc:stroke="#8095b3" color:border-color="#8095b3">
+        <di:waypoint x="1740" y="-125" />
+        <di:waypoint x="1740" y="-165" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0s8nzhw_di" bpmnElement="Flow_0s8nzhw" bioc:stroke="#8095b3" color:border-color="#8095b3">
+        <di:waypoint x="1670" y="70" />
+        <di:waypoint x="1740" y="70" />
+        <di:waypoint x="1740" y="-75" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ibs6rp_di" bpmnElement="Flow_0ibs6rp" bioc:stroke="#8095b3" color:border-color="#8095b3">
+        <di:waypoint x="1620" y="-60" />
+        <di:waypoint x="1620" y="30" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_063p624_di" bpmnElement="Flow_063p624" bioc:stroke="#8095b3" color:border-color="#8095b3">
+        <di:waypoint x="2010" y="120" />
+        <di:waypoint x="2062" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0la3k31_di" bpmnElement="Flow_0la3k31" bioc:stroke="#8095b3" color:border-color="#8095b3">
+        <di:waypoint x="2080" y="50" />
+        <di:waypoint x="2080" y="102" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_07hmf8a_di" bpmnElement="Flow_07hmf8a" bioc:stroke="#8095b3" color:border-color="#8095b3">
+        <di:waypoint x="2010" y="10" />
+        <di:waypoint x="2030" y="10" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1kpvh2i_di" bpmnElement="Flow_1kpvh2i" bioc:stroke="#8095b3" color:border-color="#8095b3">
+        <di:waypoint x="1860" y="95" />
+        <di:waypoint x="1860" y="120" />
+        <di:waypoint x="1910" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0lud653_di" bpmnElement="Flow_0lud653" bioc:stroke="#8095b3" color:border-color="#8095b3">
+        <di:waypoint x="1860" y="45" />
+        <di:waypoint x="1860" y="10" />
+        <di:waypoint x="1910" y="10" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0qns0ar_di" bpmnElement="Flow_0qns0ar" bioc:stroke="#8095b3" color:border-color="#8095b3">
+        <di:waypoint x="1765" y="-190" />
+        <di:waypoint x="1800" y="-190" />
+        <di:waypoint x="1800" y="70" />
+        <di:waypoint x="1835" y="70" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0s1p3bu_di" bpmnElement="Flow_0s1p3bu" bioc:stroke="#8095b3" color:border-color="#8095b3">
+        <di:waypoint x="1670" y="-190" />
+        <di:waypoint x="1715" y="-190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1lpo6fw_di" bpmnElement="Flow_1lpo6fw" bioc:stroke="#8095b3" color:border-color="#8095b3">
+        <di:waypoint x="1670" y="-280" />
+        <di:waypoint x="1740" y="-280" />
+        <di:waypoint x="1740" y="-215" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ntsyf3_di" bpmnElement="Flow_1ntsyf3" bioc:stroke="#8095b3" color:border-color="#8095b3">
+        <di:waypoint x="1510" y="-165" />
+        <di:waypoint x="1510" y="-100" />
+        <di:waypoint x="1570" y="-100" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0u70k77_di" bpmnElement="Flow_0u70k77" bioc:stroke="#8095b3" color:border-color="#8095b3">
+        <di:waypoint x="1535" y="-190" />
+        <di:waypoint x="1570" y="-190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0424are_di" bpmnElement="Flow_0424are" bioc:stroke="#8095b3" color:border-color="#8095b3">
+        <di:waypoint x="1510" y="-215" />
+        <di:waypoint x="1510" y="-280" />
+        <di:waypoint x="1570" y="-280" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0fax9dr_di" bpmnElement="Flow_0fax9dr" bioc:stroke="#8095b3" color:border-color="#8095b3">
+        <di:waypoint x="1410" y="-240" />
+        <di:waypoint x="1410" y="-118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_04z4e9z_di" bpmnElement="Flow_04z4e9z" bioc:stroke="#8095b3" color:border-color="#8095b3">
+        <di:waypoint x="1300" y="-215" />
+        <di:waypoint x="1300" y="-290" />
+        <di:waypoint x="1360" y="-290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0c9hzet_di" bpmnElement="Flow_0c9hzet" bioc:stroke="#8095b3" color:border-color="#8095b3">
+        <di:waypoint x="1325" y="-190" />
+        <di:waypoint x="1485" y="-190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1i0fr4n_di" bpmnElement="Flow_1i0fr4n" bioc:stroke="#8095b3" color:border-color="#8095b3">
+        <di:waypoint x="1235" y="-190" />
+        <di:waypoint x="1275" y="-190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1pqyi0c_di" bpmnElement="Flow_1pqyi0c" bioc:stroke="#8095b3" color:border-color="#8095b3">
+        <di:waypoint x="1140" y="-100" />
+        <di:waypoint x="1210" y="-100" />
+        <di:waypoint x="1210" y="-165" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1rnj66g_di" bpmnElement="Flow_1rnj66g" bioc:stroke="#8095b3" color:border-color="#8095b3">
+        <di:waypoint x="1140" y="-190" />
+        <di:waypoint x="1185" y="-190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1o30rxv_di" bpmnElement="Flow_1o30rxv" bioc:stroke="#8095b3" color:border-color="#8095b3">
+        <di:waypoint x="1140" y="-280" />
+        <di:waypoint x="1210" y="-280" />
+        <di:waypoint x="1210" y="-215" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1mk7qkv_di" bpmnElement="Flow_1mk7qkv" bioc:stroke="#8095b3" color:border-color="#8095b3">
+        <di:waypoint x="970" y="-215" />
+        <di:waypoint x="970" y="-280" />
+        <di:waypoint x="1040" y="-280" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1wb61id_di" bpmnElement="Flow_1wb61id" bioc:stroke="#8095b3" color:border-color="#8095b3">
+        <di:waypoint x="995" y="-190" />
+        <di:waypoint x="1040" y="-190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0trfv3t_di" bpmnElement="Flow_0trfv3t" bioc:stroke="#8095b3" color:border-color="#8095b3">
+        <di:waypoint x="970" y="-165" />
+        <di:waypoint x="970" y="-100" />
+        <di:waypoint x="1040" y="-100" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_11bd577_di" bpmnElement="Flow_11bd577" bioc:stroke="#8095b3" color:border-color="#8095b3">
+        <di:waypoint x="890" y="30" />
+        <di:waypoint x="890" y="-190" />
+        <di:waypoint x="945" y="-190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_106b877_di" bpmnElement="Flow_106b877" bioc:stroke="#8095b3" color:border-color="#8095b3">
+        <di:waypoint x="780" y="200" />
+        <di:waypoint x="780" y="70" />
+        <di:waypoint x="840" y="70" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0uu34vg_di" bpmnElement="Flow_0uu34vg" bioc:stroke="#8095b3" color:border-color="#8095b3">
+        <di:waypoint x="648" y="240" />
+        <di:waypoint x="730" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Gateway_0uzapyk_di" bpmnElement="Gateway_0pxljqg" bioc:stroke="#f9c000" bioc:fill="#fdecb3" color:background-color="#fdecb3" color:border-color="#f9c000">
+        <dc:Bounds x="945" y="-215" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1iz9jv8_di" bpmnElement="Gateway_1innsdb" bioc:stroke="#f9c000" bioc:fill="#fdecb3" color:background-color="#fdecb3" color:border-color="#f9c000">
+        <dc:Bounds x="1185" y="-215" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1" bioc:stroke="#55c041" bioc:fill="#ccecc6" color:background-color="#ccecc6" color:border-color="#55c041">
+        <dc:Bounds x="612" y="222" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1n01u14_di" bpmnElement="Activity_05wll92" bioc:stroke="#3fbdd6" bioc:fill="#c5ebf3" color:background-color="#c5ebf3" color:border-color="#3fbdd6">
+        <dc:Bounds x="730" y="200" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1se51dh_di" bpmnElement="Gateway_1se51dh" isMarkerVisible="true" bioc:stroke="#f9c000" bioc:fill="#fdecb3" color:background-color="#fdecb3" color:border-color="#f9c000">
+        <dc:Bounds x="1275" y="-215" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1qgisw8_di" bpmnElement="Gateway_00pxd9c" bioc:stroke="#f9c000" bioc:fill="#fdecb3" color:background-color="#fdecb3" color:border-color="#f9c000">
+        <dc:Bounds x="1485" y="-215" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_17dwrhl_di" bpmnElement="Gateway_1tcvkbc" bioc:stroke="#f9c000" bioc:fill="#fdecb3" color:background-color="#fdecb3" color:border-color="#f9c000">
+        <dc:Bounds x="1715" y="-215" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0s79ei2_di" bpmnElement="Activity_0oxwhkf" bioc:stroke="#3fbdd6" bioc:fill="#c5ebf3" color:background-color="#c5ebf3" color:border-color="#3fbdd6">
+        <dc:Bounds x="1040" y="-320" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0g4ru23_di" bpmnElement="Activity_1mdki2w" bioc:stroke="#3fbdd6" bioc:fill="#c5ebf3" color:background-color="#c5ebf3" color:border-color="#3fbdd6">
+        <dc:Bounds x="1040" y="-230" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_00negns_di" bpmnElement="Activity_0p4d5e8" bioc:stroke="#3fbdd6" bioc:fill="#c5ebf3" color:background-color="#c5ebf3" color:border-color="#3fbdd6">
+        <dc:Bounds x="1040" y="-140" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ek2qz8_di" bpmnElement="Activity_1n2um8z" bioc:stroke="#3ebfa5" bioc:fill="#c5ece4" color:background-color="#c5ece4" color:border-color="#3ebfa5">
+        <dc:Bounds x="1360" y="-320" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1chj1nx_di" bpmnElement="Event_1chj1nx" bioc:stroke="#ff7043" bioc:fill="#ffd4c7" color:background-color="#ffd4c7" color:border-color="#ff7043">
+        <dc:Bounds x="1392" y="-118" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0mr6w6z_di" bpmnElement="Activity_1gugqaz" bioc:stroke="#3fbdd6" bioc:fill="#c5ebf3" color:background-color="#c5ebf3" color:border-color="#3fbdd6">
+        <dc:Bounds x="1570" y="-140" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0cm4y4i_di" bpmnElement="Activity_1bodajw" bioc:stroke="#3fbdd6" bioc:fill="#c5ebf3" color:background-color="#c5ebf3" color:border-color="#3fbdd6">
+        <dc:Bounds x="1570" y="-230" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1y4feut_di" bpmnElement="Activity_1982n1e" bioc:stroke="#3fbdd6" bioc:fill="#c5ebf3" color:background-color="#c5ebf3" color:border-color="#3fbdd6">
+        <dc:Bounds x="1570" y="-320" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_169w1zp_di" bpmnElement="Gateway_169w1zp" isMarkerVisible="true" bioc:stroke="#f9c000" bioc:fill="#fdecb3" color:background-color="#fdecb3" color:border-color="#f9c000">
+        <dc:Bounds x="1715" y="-125" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_06b33bk_di" bpmnElement="Event_06b33bk" bioc:stroke="#ff7043" bioc:fill="#ffd4c7" color:background-color="#ffd4c7" color:border-color="#ff7043">
+        <dc:Bounds x="2062" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0zu0u59_di" bpmnElement="Activity_1betm9f" bioc:stroke="#ff9e0f" bioc:fill="#ffeed4" color:background-color="#ffeed4" color:border-color="#ff9e0f">
+        <dc:Bounds x="1910" y="-30" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1h6kqky_di" bpmnElement="Activity_125oyja" bioc:stroke="#3ebfa5" bioc:fill="#c5ece4" color:background-color="#c5ece4" color:border-color="#3ebfa5">
+        <dc:Bounds x="2030" y="-30" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_05ush19_di" bpmnElement="Activity_1i24wm3" bioc:stroke="#3ebfa5" bioc:fill="#c5ece4" color:background-color="#c5ece4" color:border-color="#3ebfa5">
+        <dc:Bounds x="1910" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1xpowag_di" bpmnElement="Activity_1nyksjd" bioc:stroke="#3fbdd6" bioc:fill="#c5ebf3" color:background-color="#c5ebf3" color:border-color="#3fbdd6">
+        <dc:Bounds x="840" y="30" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_11zhy23_di" bpmnElement="Activity_06by04m" bioc:stroke="#3fbdd6" bioc:fill="#c5ebf3" color:background-color="#c5ebf3" color:border-color="#3fbdd6">
+        <dc:Bounds x="1570" y="30" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1tdg2uz_di" bpmnElement="Gateway_1tdg2uz" isMarkerVisible="true" bioc:stroke="#f9c000" bioc:fill="#fdecb3" color:background-color="#fdecb3" color:border-color="#f9c000">
+        <dc:Bounds x="1835" y="45" width="50" height="50" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
